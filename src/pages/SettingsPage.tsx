@@ -19,6 +19,25 @@ export function SettingsPage() {
   const [persisted, setPersisted] = useState<boolean | null>(null);
   const [voiceList, setVoiceList] = useState(voices());
   const [backupMsg, setBackupMsg] = useState('');
+  const [updateMsg, setUpdateMsg] = useState('');
+  const checkUpdate = async () => {
+    setUpdateMsg('Checking…');
+    try {
+      const reg = await navigator.serviceWorker?.getRegistration();
+      if (!reg) {
+        location.reload();
+        return;
+      }
+      await reg.update();
+      if (reg.installing || reg.waiting) {
+        setUpdateMsg('Downloading the new version… the app will restart by itself.');
+        // If it has not restarted after a while, reload to pick it up.
+        setTimeout(() => location.reload(), 15000);
+      } else setUpdateMsg('You have the latest version.');
+    } catch {
+      setUpdateMsg('Could not check right now. Try again when online.');
+    }
+  };
   const [aiTest, setAiTest] = useState<{ ok: boolean; msg: string } | null>(null);
   const testAi = async () => {
     setAiTest({ ok: true, msg: 'Checking…' });
@@ -289,6 +308,19 @@ export function SettingsPage() {
           <input ref={importInput} type="file" accept="application/json,.json" hidden onChange={doImport} />
         </div>
         {backupMsg && <p className="hint">{backupMsg}</p>}
+      </section>
+
+      <section className="panel">
+        <h2>App version</h2>
+        <p>
+          Version from <strong>{__APP_VERSION__}</strong> (UTC). The app updates itself when you open it while online.
+        </p>
+        <div className="row wrap">
+          <button type="button" className="btn" disabled={!online || updateMsg === 'Checking…'} onClick={checkUpdate}>
+            Check for updates
+          </button>
+          {updateMsg && <span className="hint">{updateMsg}</span>}
+        </div>
       </section>
 
       <section className="panel credits">

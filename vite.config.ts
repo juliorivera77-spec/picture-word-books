@@ -5,6 +5,8 @@ import { VitePWA } from 'vite-plugin-pwa';
 export default defineConfig({
   // Relative base so the app works from any folder (e.g. GitHub Pages /repo-name/).
   base: './',
+  // Shown in Settings so people can see which version they have.
+  define: { __APP_VERSION__: JSON.stringify(new Date().toISOString().slice(0, 16).replace('T', ' ')) },
   plugins: [
     react(),
     VitePWA({
