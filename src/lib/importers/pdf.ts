@@ -33,7 +33,7 @@ export async function importPdf(file: File, onStatus: (s: string) => void): Prom
     text = cleanOcrText(text);
     if (text.replace(/\W/g, '').length < 3) {
       onStatus(`Page ${n} is a scan — reading the words with OCR…`);
-      text = await readImageText(canvas);
+      text = (await readImageText(canvas)).text;
     }
     pages.push({ text, image: await canvasToBlob(canvas, 'image/jpeg', 0.8) });
   }

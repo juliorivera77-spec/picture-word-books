@@ -108,7 +108,18 @@ const SETTINGS_KEY = 'pwb-settings';
 export function loadSettings(): Settings {
   try {
     const raw = localStorage.getItem(SETTINGS_KEY);
-    if (raw) return { ...DEFAULT_SETTINGS, ...JSON.parse(raw) };
+    if (raw) {
+      const saved = JSON.parse(raw);
+      const s: Settings = { ...DEFAULT_SETTINGS, ...saved };
+      // Version 1 had AI drawing off by default; turn the new AI helpers on for people who enabled AI.
+      if (!saved.version || saved.version < 2) {
+        s.aiAuto = true;
+        s.aiContext = true;
+        s.aiOcr = true;
+        s.version = 2;
+      }
+      return s;
+    }
   } catch {
     /* fall through to defaults */
   }

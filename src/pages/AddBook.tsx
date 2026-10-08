@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { aiReady, readPagePhoto } from '../lib/ai';
 import { createBook, generateMissing } from '../lib/books';
 import { uid } from '../lib/db';
 import { readImageText } from '../lib/importers/ocr';
+import { CropTool, cropImage, type CropArea } from '../components/CropTool';
 import { useOnline, useSettings } from '../lib/settings';
 import { splitPages } from '../lib/text';
 import type { DraftPage } from '../lib/types';
@@ -26,23 +28,47 @@ export function AddBook() {
 
   const patch = (id: string, p: Partial<DraftPage>) => setDrafts((ds) => ds.map((d) => (d.id === id ? { ...d, ...p } : d)));
 
-  /** Add photos as pages and read their text one at a time (OCR is heavy on phones). */
+  /** Read the words in one photo: AI when it is on and online (far better on picture books), else on the device. */
+  const readPhoto = async (id: string, image: Blob, area?: CropArea) => {
+    const source = area ? await cropImage(image, area) : image;
+    if (settings.aiOcr && aiReady(settings)) {
+      patch(id, { status: 'AI is reading the words…' });
+      try {
+        const text = await readPagePhoto(source, settings);
+        patch(id, { text, status: text ? '' : 'No story words found — type them in below.' });
+        return;
+      } catch (e) {
+        patch(id, { status: `AI could not read it (${(e as Error).message}). Reading on this device instead…` });
+      }
+    }
+    patch(id, { status: 'Reading words on this device… 0%' });
+    try {
+      const { text, unsure } = await readImageText(source, (p) => patch(id, { status: `Reading words on this device… ${Math.round(p * 100)}%` }));
+      patch(id, {
+        text,
+        status: !text
+          ? 'No words found. Try “Select the words” to box just the text, or type them in below.'
+          : unsure
+            ? 'Some words were hard to read — please check them. Tip: “Select the words” to box just the text.'
+            : '',
+      });
+    } catch (e) {
+      patch(id, { status: `Could not read this photo (${(e as Error).message}). Type the words below.` });
+    }
+  };
+
+  /** Add photos as pages and read their text one at a time (reading is heavy on phones). */
   const addPhotos = (files: FileList | File[]) => {
     const added = Array.from(files)
-      .filter((f) => f.type.startsWith('image/'))
+      .filter((f) => f.type.startsWith('image/') || /\.(heic|heif|jpe?g|png|webp)$/i.test(f.name))
       .map((f) => ({ id: uid(), text: '', image: f as Blob, status: 'Waiting to read…' }));
     setDrafts((ds) => [...ds, ...added]);
-    for (const d of added) {
-      ocrQueue.current = ocrQueue.current.then(async () => {
-        patch(d.id, { status: 'Reading words… 0%' });
-        try {
-          const text = await readImageText(d.image!, (p) => patch(d.id, { status: `Reading words… ${Math.round(p * 100)}%` }));
-          patch(d.id, { text, status: text ? '' : 'No words found — type them in below.' });
-        } catch (e) {
-          patch(d.id, { status: `Could not read this photo (${(e as Error).message}). Type the words below.` });
-        }
-      });
-    }
+    for (const d of added) queueRead(d.id, d.image!);
+  };
+
+  const queueRead = (id: string, image: Blob, area?: CropArea) => {
+    patch(id, { status: 'Waiting to read…' });
+    ocrQueue.current = ocrQueue.current.then(() => readPhoto(id, image, area));
   };
 
   const onFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -88,16 +114,18 @@ export function AddBook() {
     });
 
   const pagesToMake = mode === 'type' && drafts.length === 0 ? splitPages(pasted).map((text) => ({ id: uid(), text })) : drafts;
-  const reading = drafts.some((d) => d.status?.startsWith('Reading') || d.status?.startsWith('Waiting'));
+  const reading = drafts.some((d) => /^(Reading|Waiting|AI is reading)/.test(d.status ?? ''));
+  const [cropping, setCropping] = useState<DraftPage | null>(null);
 
   const make = async () => {
     setError('');
     try {
-      const { book, result } = await createBook(title, pagesToMake, settings, setStatus);
-      if (result.missing.length && settings.aiEnabled && settings.aiAuto && settings.aiKey && navigator.onLine) {
-        await generateMissing(book, settings, setStatus);
+      const { book, result, aiError } = await createBook(title, pagesToMake, settings, setStatus);
+      let error = aiError;
+      if (!error && result.missing.length && settings.aiAuto && aiReady(settings)) {
+        error = (await generateMissing(book, settings, setStatus))[0];
       }
-      nav(`/book/${book.id}`, { replace: true });
+      nav(`/book/${book.id}`, { replace: true, state: { aiError: error } });
     } catch (e) {
       setError((e as Error).message);
       setStatus('');
@@ -133,7 +161,12 @@ export function AddBook() {
 
       {mode === 'photo' && (
         <div className="panel">
-          <p>Take a photo of each page, in order. The words are read on this device, and work without internet.</p>
+          <p>
+            Take a photo of each page, in order — hold the phone flat above the page, in good light.{' '}
+            {settings.aiOcr && aiReady(settings)
+              ? 'AI reads the words (best for picture books).'
+              : 'The words are read on this device, without internet. If it struggles, use “Select the words” to box just the text.'}
+          </p>
           <div className="row wrap">
             <button type="button" className="btn primary big-btn" onClick={() => camera.current?.click()}>📷 Take a photo</button>
             <button type="button" className="btn big-btn" onClick={() => gallery.current?.click()}>🖼️ Choose photos</button>
@@ -175,10 +208,23 @@ export function AddBook() {
                 onUp={() => move(i, -1)}
                 onDown={() => move(i, 1)}
                 onDelete={() => setDrafts((ds) => ds.filter((x) => x.id !== d.id))}
+                onCrop={d.image ? () => setCropping(d) : undefined}
+                onReread={d.image ? () => queueRead(d.id, d.image!) : undefined}
               />
             ))}
           </div>
         </section>
+      )}
+
+      {cropping?.image && (
+        <CropTool
+          image={cropping.image}
+          onCancel={() => setCropping(null)}
+          onDone={(area) => {
+            queueRead(cropping.id, cropping.image!, area);
+            setCropping(null);
+          }}
+        />
       )}
 
       {error && <p className="error">{error}</p>}
@@ -200,6 +246,8 @@ function DraftRow({
   onUp,
   onDown,
   onDelete,
+  onCrop,
+  onReread,
 }: {
   draft: DraftPage;
   n: number;
@@ -207,6 +255,8 @@ function DraftRow({
   onUp: () => void;
   onDown: () => void;
   onDelete: () => void;
+  onCrop?: () => void;
+  onReread?: () => void;
 }) {
   const url = useMemo(() => (draft.image ? URL.createObjectURL(draft.image) : null), [draft.image]);
   useEffect(() => () => void (url && URL.revokeObjectURL(url)), [url]);
@@ -223,6 +273,12 @@ function DraftRow({
       </div>
       <div className="grow">
         {draft.status && <p className="hint">{draft.status}</p>}
+        {(onCrop || onReread) && (
+          <div className="row wrap">
+            {onCrop && <button type="button" className="btn small" onClick={onCrop}>✂️ Select the words</button>}
+            {onReread && <button type="button" className="btn small" onClick={onReread}>↻ Read again</button>}
+          </div>
+        )}
         <textarea rows={4} value={draft.text} onChange={(e) => onText(e.target.value)} placeholder="Words on this page" />
       </div>
     </div>

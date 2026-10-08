@@ -1,0 +1,171 @@
+// Built-in pictures for the small, frequent words every sentence needs ("is", "not", "the", "he"…).
+// .png files are ARASAAC pictograms (CC BY-NC-SA, via the Cboard project); .svg files were drawn
+// for this app in the same style. They ship with the app, so these words always have a picture.
+
+const BASE = `${import.meta.env.BASE_URL}symbols/core/`;
+
+const groups: Record<string, string[]> = {
+  // people & pronouns
+  'i.png': ['i'],
+  'me.png': ['me', 'myself'],
+  'my.png': ['my'],
+  'mine.png': ['mine'],
+  'you.png': ['you', 'yourself', 'ya'],
+  'your.png': ['your', 'yours'],
+  'he.png': ['he', 'himself'],
+  'him.svg': ['him'],
+  'his.png': ['his'],
+  'she.png': ['she', 'herself'],
+  'her.svg': ['her'],
+  'hers.svg': ['hers'],
+  'it.png': ['it', 'its', 'itself'],
+  'we.png': ['we'],
+  'us.png': ['us', 'ourselves'],
+  'our.png': ['our', 'ours'],
+  'they.png': ['they', 'themselves'],
+  'them.svg': ['them'],
+  'their.png': ['their', 'theirs'],
+  'everybody.png': ['everybody', 'everyone'],
+  'anybody.png': ['anybody', 'anyone', 'somebody', 'someone'],
+  'nobody.png': ['nobody', 'no one'],
+  'who.png': ['who', 'whom', 'whose'],
+  'whoever.png': ['whoever'],
+  // to be / have / do / can / will
+  'is.png': ['is', 'am', 'are', 'be', 'been', 'being', "'s", "'re", "'m", 'isn'],
+  'was.png': ['was', 'were'],
+  'i_have.png': ['have', 'has', 'had', 'having', "'ve", 'got'],
+  'do.svg': ['do', 'does', 'did', 'done', 'doing'],
+  'can.svg': ['can', 'could', 'able'],
+  'will.svg': ['will', 'would', 'shall', "'ll", "'d", 'going to', 'gonna'],
+  // little words
+  'the.svg': ['the'],
+  'a.svg': ['a', 'an', 'one'],
+  'and.png': ['and', '&'],
+  'or.svg': ['or', 'either'],
+  'but.svg': ['but', 'however', 'instead'],
+  'if.svg': ['if', 'whether'],
+  'then.svg': ['then', 'next', 'so', 'after that', 'because'],
+  'no.png': ['no', 'not', "n't", 'never', 'nope', "don't", "doesn't", "didn't", "can't", "won't", "isn't", "aren't", "wasn't", "weren't", "couldn't", "wouldn't", "shouldn't", 'cannot'],
+  'yes.png': ['yes', 'yeah', 'yep', 'ok', 'okay'],
+  'of.svg': ['of'],
+  'at.svg': ['at'],
+  'to.png': ['to', 'toward', 'towards'],
+  'from.svg': ['from'],
+  'into.svg': ['into'],
+  'with.png': ['with'],
+  'for.png': ['for'],
+  'by.svg': ['by', 'beside', 'next to'],
+  'about.svg': ['about'],
+  'away.svg': ['away'],
+  'back.svg': ['back'],
+  'again.svg': ['again'],
+  'also.svg': ['also', 'too', 'as well'],
+  'very.svg': ['very', 'really', 'so much'],
+  'only.svg': ['only', 'just'],
+  'same.svg': ['same', 'as', 'like that'],
+  'now.svg': ['now', 'today'],
+  'off.svg': ['off'],
+  'here.svg': ['here'],
+  'there.svg': ['there'],
+  'this.svg': ['this'],
+  'these.svg': ['these'],
+  'that.png': ['that', 'those'],
+  'what.svg': ['what', 'which'],
+  'where.svg': ['where'],
+  'when.svg': ['when', 'while'],
+  'why.png': ['why'],
+  'how.svg': ['how'],
+  'all.svg': ['all', 'whole'],
+  'every.png': ['every', 'each'],
+  'some.svg': ['some', 'any'],
+  'more.png': ['more', 'another'],
+  'none.png': ['none', 'nothing'],
+  'like.svg': ['like', 'likes', 'liked'],
+  'i_love.png': ['love', 'loves', 'loved'],
+  'please.png': ['please'],
+  'thanks.png': ['thanks', 'thank you', 'thank'],
+  'goodbye.png': ['goodbye', 'bye'],
+  // actions (ARASAAC)
+  'go.png': ['go', 'goes', 'went', 'gone', 'going'],
+  'come.png': ['come', 'comes', 'came', 'coming'],
+  'eat.png': ['eat', 'eats', 'ate', 'eaten', 'eating'],
+  'drink.png': ['drink', 'drinks', 'drank', 'drinking'],
+  'get.png': ['get', 'gets', 'getting'],
+  'give.png': ['give', 'gives', 'gave', 'given', 'giving'],
+  'make.png': ['make', 'makes', 'made', 'making'],
+  'find.png': ['find', 'finds', 'found', 'finding'],
+  'talk.png': ['say', 'says', 'said', 'saying', 'talk', 'talks', 'talked', 'tell', 'tells', 'told', 'speak', 'spoke'],
+  'think.png': ['think', 'thinks', 'thought', 'thinking', 'wonder', 'wondered'],
+  'watch.png': ['see', 'sees', 'saw', 'seen', 'watch', 'watched', 'watches'],
+  'wait.png': ['wait', 'waits', 'waited', 'waiting'],
+  'jump.png': ['jump', 'jumps', 'jumped', 'jumping', 'hop', 'hopped'],
+  'hug.png': ['hug', 'hugs', 'hugged', 'cuddle'],
+  'open.png': ['open', 'opens', 'opened'],
+  'close.png': ['close', 'closes', 'closed', 'shut'],
+  'push.png': ['push', 'pushed', 'pushes'],
+  'move.png': ['move', 'moves', 'moved'],
+  'rest.png': ['rest', 'rested', 'relax'],
+  'shout.png': ['shout', 'shouted', 'yell', 'yelled', 'cried out'],
+  'dance.png': ['dance', 'danced', 'dances', 'dancing'],
+  'draw.png': ['draw', 'drew', 'drawing'],
+  'drive.png': ['drive', 'drove', 'driving'],
+  'cook.png': ['cook', 'cooked', 'cooking'],
+  'finish.png': ['finish', 'finished', 'done', 'the end', 'end'],
+  'show_me.png': ['show', 'showed', 'shows'],
+  'call_out.png': ['call', 'called'],
+  'squeeze.png': ['squeeze', 'squeezed'],
+  // describing
+  'happy.png': ['happy', 'glad'],
+  'sad.png': ['sad', 'unhappy'],
+  'bad.png': ['bad'],
+  'hot.png': ['hot'],
+  'dirty.png': ['dirty', 'messy'],
+  'full.png': ['full'],
+  'empty.png': ['empty'],
+  'slow.png': ['slow', 'slowly'],
+  'large.png': ['big', 'large', 'huge', 'giant'],
+  'little.png': ['little', 'small', 'tiny'],
+  'different.svg': ['different'],
+  'awake.png': ['awake', 'wake', 'woke', 'wake up', 'woke up'],
+  // people & places
+  'mum.png': ['mum', 'mom', 'mommy', 'mummy', 'mama', 'mother'],
+  'dad.png': ['dad', 'daddy', 'papa', 'father'],
+  'baby.svg': ['baby'],
+  'boy.png': ['boy'],
+  'girl.png': ['girl'],
+  'brother.png': ['brother'],
+  'sister.svg': ['sister'],
+  'friend.png': ['friend', 'friends'],
+  'family.png': ['family'],
+  'children.png': ['children', 'kids'],
+  'people.png': ['people'],
+  'parents.png': ['parents'],
+  'grandfather.svg': ['grandfather', 'grandpa', 'granddad'],
+  'grandmother.svg': ['grandmother', 'grandma', 'granny', 'nana'],
+  'home.png': ['home', 'house'],
+  'bathroom.png': ['bathroom', 'toilet', 'potty'],
+  'water.png': ['water'],
+  'red.png': ['red'],
+  'blue.png': ['blue'],
+  'green.png': ['green'],
+  'yellow.png': ['yellow'],
+};
+
+const index = new Map<string, string>();
+for (const [file, words] of Object.entries(groups)) for (const w of words) if (!index.has(w)) index.set(w, file);
+
+/** The built-in picture for a word, if it is one of the core words. */
+export function lookupCore(word: string): string | null {
+  return index.get(word.toLowerCase()) ?? null;
+}
+
+export const coreUrl = (file: string) => `${BASE}${file}`;
+
+/** Every core picture, for the picture picker's search. */
+export function searchCore(query: string): string[] {
+  const q = query.toLowerCase().trim();
+  if (!q) return [];
+  const out = new Set<string>();
+  for (const [w, f] of index) if (w === q || w.startsWith(q)) out.add(f);
+  return [...out];
+}

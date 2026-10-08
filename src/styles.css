@@ -149,3 +149,8 @@ input[type=range] { width: 100%; }
   .credits { font-size: 9pt; color: #555; }
 }
 .panel > p:first-child { margin-top: 0; }
+.error-box { background: #fde7e9; color: #8c1d18; }
+.link:disabled { opacity: .5; cursor: default; }
+.crop-box { position: relative; touch-action: none; user-select: none; max-height: 65vh; overflow: hidden; border-radius: 10px; margin: 8px 0; }
+.crop-box img { display: block; width: 100%; max-height: 65vh; object-fit: contain; pointer-events: none; }
+.crop-sel { position: absolute; border: 3px dashed var(--brand); box-shadow: 0 0 0 9999px rgba(0, 0, 0, .45); pointer-events: none; }

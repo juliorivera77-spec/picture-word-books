@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { testConnection } from '../lib/ai';
 import { exportBackup, importBackup } from '../lib/backup';
 import { countImages } from '../lib/db';
 import { useOnline, useSettings } from '../lib/settings';
 import { canSpeak, speak, voices } from '../lib/speech';
-import { arasaacMeta, downloadAllArasaac, downloadArasaacIndex, type ArasaacMeta } from '../lib/symbols/arasaac';
+import { ARASAAC_INDEX_VERSION, arasaacMeta, downloadAllArasaac, downloadArasaacIndex, type ArasaacMeta } from '../lib/symbols/arasaac';
 import type { TextCase, WordPosition } from '../lib/types';
 
 export function SettingsPage() {
@@ -18,6 +19,15 @@ export function SettingsPage() {
   const [persisted, setPersisted] = useState<boolean | null>(null);
   const [voiceList, setVoiceList] = useState(voices());
   const [backupMsg, setBackupMsg] = useState('');
+  const [aiTest, setAiTest] = useState<{ ok: boolean; msg: string } | null>(null);
+  const testAi = async () => {
+    setAiTest({ ok: true, msg: 'Checking…' });
+    try {
+      setAiTest({ ok: true, msg: await testConnection(settings) });
+    } catch (e) {
+      setAiTest({ ok: false, msg: (e as Error).message });
+    }
+  };
   const abort = useRef<AbortController | null>(null);
   const importInput = useRef<HTMLInputElement>(null);
 
@@ -149,9 +159,9 @@ export function SettingsPage() {
 
         <h3>ARASAAC offline dictionary</h3>
         <p>
-          Mulberry symbols (about 3,400) are built in. ARASAAC adds about 13,000 more, including little words like
-          “the”, “is” and “and”. Download its word list once so every word can be matched offline. Pictures for each book are saved
-          automatically when you make it.
+          Built in: pictures for about 300 everyday little words (is, not, the, he, can…) and the Mulberry set (about 3,400 symbols).
+          ARASAAC adds about 13,000 more. Download its word list once so every word can be matched offline; pictures for each book are
+          saved automatically when you make it.
         </p>
         <p className="hint">
           {meta
@@ -160,7 +170,7 @@ export function SettingsPage() {
         </p>
         <div className="row wrap">
           <button type="button" className="btn primary" disabled={!online || !!allProgress} onClick={getDict}>
-            {meta ? 'Update word list' : 'Download word list (one time)'}
+            {!meta ? 'Download word list (one time)' : (meta.version ?? 1) < ARASAAC_INDEX_VERSION ? 'Update word list (recommended)' : 'Update word list'}
           </button>
           {meta && !allProgress && (
             <button type="button" className="btn" disabled={!online} onClick={getAll}>
@@ -192,14 +202,17 @@ export function SettingsPage() {
       </section>
 
       <section className="panel">
-        <h2>AI pictures (optional, needs internet)</h2>
+        <h2>AI helper (optional, needs internet)</h2>
         <p>
-          For words with no symbol, the app can draw a new pictogram with OpenAI’s image model. You need your own OpenAI API key
-          (paid; each picture costs a few cents). The key is stored only on this device. Finished pictures are saved and work offline.
+          With your own OpenAI API key the app can: <strong>read each whole sentence</strong> so words get the picture for the right
+          meaning (“on top of the table” instead of a clothing top), <strong>read page photos</strong> much more accurately, and{' '}
+          <strong>draw a picture</strong> for any word that has no symbol. It costs a few cents per book (about 4¢ per drawn picture).
+          The key is stored only on this device; page text and photos are sent to OpenAI when AI is used. Everything it makes is saved and
+          works offline.
         </p>
         <label className="row check">
-          <input type="checkbox" checked={settings.aiEnabled} onChange={(e) => update({ aiEnabled: e.target.checked })} />
-          Turn on AI pictures
+          <input type="checkbox" checked={settings.aiEnabled} onChange={(e) => update({ aiEnabled: e.target.checked, ...(e.target.checked ? { aiAuto: true, aiContext: true, aiOcr: true } : {}) })} />
+          Turn on the AI helper
         </label>
         {settings.aiEnabled && (
           <>
@@ -207,14 +220,34 @@ export function SettingsPage() {
               <span>OpenAI API key</span>
               <input type="password" autoComplete="off" value={settings.aiKey} placeholder="sk-…" onChange={(e) => update({ aiKey: e.target.value.trim() })} />
             </label>
-            <label className="field">
-              <span>Image model</span>
-              <input value={settings.aiModel} onChange={(e) => update({ aiModel: e.target.value.trim() })} />
+            <div className="row wrap">
+              <button type="button" className="btn" disabled={!online || !settings.aiKey} onClick={testAi}>Test my key</button>
+              {aiTest && <span className={aiTest.ok ? 'hint' : 'error'}>{aiTest.msg}</span>}
+            </div>
+            <label className="row check">
+              <input type="checkbox" checked={settings.aiContext} onChange={(e) => update({ aiContext: e.target.checked })} />
+              Read whole sentences to choose the right picture for each word
+            </label>
+            <label className="row check">
+              <input type="checkbox" checked={settings.aiOcr} onChange={(e) => update({ aiOcr: e.target.checked })} />
+              Use AI to read the words in page photos
             </label>
             <label className="row check">
               <input type="checkbox" checked={settings.aiAuto} onChange={(e) => update({ aiAuto: e.target.checked })} />
-              Automatically draw missing words when making a new book
+              Draw pictures automatically for words with no symbol when making a book
             </label>
+            <details>
+              <summary className="hint">Advanced: models</summary>
+              <label className="field">
+                <span>Reading model (sentences and photos)</span>
+                <input value={settings.aiTextModel} onChange={(e) => update({ aiTextModel: e.target.value.trim() })} />
+              </label>
+              <label className="field">
+                <span>Drawing model</span>
+                <input value={settings.aiModel} onChange={(e) => update({ aiModel: e.target.value.trim() })} />
+              </label>
+              <p className="hint">If a model is not available on your account, the app tries other common models automatically.</p>
+            </details>
           </>
         )}
       </section>
@@ -262,7 +295,7 @@ export function SettingsPage() {
         <h2>Credits & licences</h2>
         <p>
           Pictographic symbols © Government of Aragón, author Sergio Palao. Origin: ARASAAC (
-          <a href="https://arasaac.org" target="_blank" rel="noreferrer">arasaac.org</a>). Licence: CC BY-NC-SA 4.0.
+          <a href="https://arasaac.org" target="_blank" rel="noreferrer">arasaac.org</a>). Licence: CC BY-NC-SA 4.0. Built-in little-word pictograms via the Cboard project (cboard.io).
         </p>
         <p>
           Mulberry Symbols © Steve Lee (<a href="https://mulberrysymbols.org" target="_blank" rel="noreferrer">mulberrysymbols.org</a>). Licence: CC BY-SA 4.0.

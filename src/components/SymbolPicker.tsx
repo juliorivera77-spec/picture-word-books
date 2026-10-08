@@ -4,6 +4,7 @@ import { listUserImages, putImage, uid } from '../lib/db';
 import { shrinkImage } from '../lib/images';
 import { useOnline } from '../lib/settings';
 import { searchArasaac } from '../lib/symbols/arasaac';
+import { searchCore } from '../lib/symbols/core';
 import { searchMulberry } from '../lib/symbols/mulberry';
 import { candidatesFor } from '../lib/symbols/resolver';
 import type { Settings, SymbolRef, Token } from '../lib/types';
@@ -48,7 +49,8 @@ export function SymbolPicker({
 
   // Start with the best matches for this word and its other forms.
   useEffect(() => {
-    candidatesFor([phrase.toLowerCase(), token.key, ...token.alts], settings.sourceOrder).then(setResults);
+    const words = [...(token.concept ? [token.concept] : []), phrase.toLowerCase(), token.key, ...token.alts];
+    candidatesFor(words, settings.sourceOrder, token.cls).then(setResults);
   }, [phrase, token, settings.sourceOrder]);
 
   const search = async (e?: React.FormEvent) => {
@@ -66,7 +68,7 @@ export function SymbolPicker({
       const ar = a.map((id) => `a:${id}`);
       const mu = m.map((n) => `m:${n}`);
       const ordered = settings.sourceOrder[0] === 'mulberry' ? [...mu, ...ar] : [...ar, ...mu];
-      setResults([...mine, ...ordered]);
+      setResults([...new Set([...mine, ...searchCore(q).map((f) => `c:${f}`), ...ordered])]);
     } finally {
       setBusy('');
     }

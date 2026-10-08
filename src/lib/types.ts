@@ -2,6 +2,7 @@
  * A reference to a picture:
  *   "m:<name>"  Mulberry symbol (bundled with the app)
  *   "a:<id>"    ARASAAC pictogram (cached on the device)
+ *   "c:<file>"  built-in picture for a core word ("is", "the", "he"…)
  *   "u:<id>"    the user's own picture: photo, drawing or AI image (stored on the device)
  *   "none"      deliberately no picture
  */
@@ -39,6 +40,12 @@ export interface Token {
   joined?: boolean;
   /** Set when the user picked the picture by hand. */
   manual?: boolean;
+  /** Meaning in this sentence, as a word to look up (from AI or context rules), e.g. "on top" for "top". */
+  concept?: string;
+  /** How many following words the AI said belong to this word's picture ("on top of" → 2). */
+  aiGroup?: number;
+  /** What a picture of this word should show, for AI drawing (from the AI sentence reader). */
+  draw?: string;
 }
 
 export interface Page {
@@ -73,6 +80,13 @@ export interface Settings {
   aiKey: string;
   aiModel: string;
   aiAuto: boolean;
+  /** Model that reads sentences and photos (needs vision). */
+  aiTextModel: string;
+  /** Use AI to read whole sentences and pick the right meaning of each word. */
+  aiContext: boolean;
+  /** Use AI to read the words in page photos (much better than on-device reading). */
+  aiOcr: boolean;
+  version: number;
 }
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -87,7 +101,11 @@ export const DEFAULT_SETTINGS: Settings = {
   aiEnabled: false,
   aiKey: '',
   aiModel: 'gpt-image-1',
-  aiAuto: false,
+  aiAuto: true,
+  aiTextModel: 'gpt-4.1-mini',
+  aiContext: true,
+  aiOcr: true,
+  version: 2,
 };
 
 /** A page while a book is being created, before pictures are matched. */

@@ -1,8 +1,8 @@
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { Modal, SymbolPicker, type PickResult } from '../components/SymbolPicker';
 import { WordCard } from '../components/WordCard';
-import { generateMissing, retokenizePage } from '../lib/books';
+import { generateMissing, improveWithAI, retokenizePage } from '../lib/books';
 import { getBook, getImage, saveBook, setWordPref } from '../lib/db';
 import { useOnline, useSettings } from '../lib/settings';
 import { speak, stopSpeaking } from '../lib/speech';
@@ -45,6 +45,8 @@ export function Reader() {
   const [scanUrl, setScanUrl] = useState<string | null>(null);
   const [editText, setEditText] = useState<string | null>(null);
   const [status, setStatus] = useState('');
+  const location = useLocation();
+  const [aiError, setAiError] = useState<string>((location.state as { aiError?: string } | null)?.aiError ?? '');
   const [printing, setPrinting] = useState(false);
   const touch = useRef<number | null>(null);
 
@@ -201,11 +203,20 @@ export function Reader() {
 
   const missingWords = [...new Set(book.pages.flatMap((p) => p.tokens.filter((t) => !t.sym && !t.joined).map((t) => t.key)))];
 
-  const aiAll = async () => {
-    const errors = await generateMissing(book, settings, setStatus);
-    setStatus(errors.length ? `Some pictures failed: ${errors[0]}` : '');
+  const aiOn = settings.aiEnabled && !!settings.aiKey;
+  const runAi = async (job: () => Promise<string[]>) => {
+    setAiError('');
+    try {
+      const errors = await job();
+      if (errors.length) setAiError(errors[0]);
+    } catch (e) {
+      setAiError((e as Error).message);
+    }
+    setStatus('');
     refresh();
   };
+  const aiAll = () => runAi(() => generateMissing(book, settings, setStatus));
+  const aiImprove = () => runAi(() => improveWithAI(book, settings, setStatus));
 
   const print = () => {
     setPrinting(true);
@@ -237,6 +248,14 @@ export function Reader() {
           Tap any picture to change it. You can also{' '}
           <button type="button" className="link" onClick={() => setEditText(page.text)}>edit this page’s words</button>,{' '}
           <button type="button" className="link" onClick={print}>print the book</button>
+          {aiOn && (
+            <>
+              ,{' '}
+              <button type="button" className="link" disabled={!online || !!status} onClick={aiImprove}>
+                re-check every picture with AI{!online ? ' (needs internet)' : ''}
+              </button>
+            </>
+          )}
           {scanUrl && (
             <>
               , or{' '}
@@ -249,17 +268,29 @@ export function Reader() {
         </div>
       )}
 
-      {missingWords.length > 0 && editing && (
+      {missingWords.length > 0 && !status && (
         <div className="notice warn no-print">
-          {missingWords.length} word{missingWords.length === 1 ? '' : 's'} without a picture: <em>{missingWords.slice(0, 12).join(', ')}{missingWords.length > 12 ? '…' : ''}</em>
-          {settings.aiEnabled && settings.aiKey && (
-            <button type="button" className="btn small" disabled={!online || !!status} onClick={aiAll}>
-              ✨ Make AI pictures{!online ? ' (needs internet)' : ''}
+          {missingWords.length} word{missingWords.length === 1 ? '' : 's'} still need{missingWords.length === 1 ? 's' : ''} a picture:{' '}
+          <em>{missingWords.slice(0, 12).join(', ')}{missingWords.length > 12 ? '…' : ''}</em>
+          {aiOn ? (
+            <button type="button" className="btn small" disabled={!online} onClick={aiAll}>
+              ✨ Draw {missingWords.length === 1 ? 'it' : 'them'} with AI{!online ? ' (needs internet)' : ''}
             </button>
+          ) : (
+            <>
+              {' '}— tap <strong>Edit</strong>, then a blank card to add a photo or drawing, or turn on AI pictures in{' '}
+              <Link to="/settings">Settings</Link>.
+            </>
           )}
         </div>
       )}
-      {status && <p className="hint center no-print">{status}</p>}
+      {status && <p className="notice no-print">⏳ {status}</p>}
+      {aiError && (
+        <p className="notice error-box no-print">
+          AI problem: {aiError}{' '}
+          <button type="button" className="link" onClick={() => setAiError('')}>Dismiss</button>
+        </p>
+      )}
 
       <main
         className="book-page no-print"
