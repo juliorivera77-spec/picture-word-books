@@ -1,9 +1,7 @@
 name: Deploy Picture Word Books to GitHub Pages
 
+# Manual alternative to the gh-pages branch (set Settings → Pages → Source: GitHub Actions to use it).
 on:
-  push:
-    branches: [main]
-    
   workflow_dispatch:
 
 permissions:
