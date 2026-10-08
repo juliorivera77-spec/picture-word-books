@@ -172,7 +172,11 @@ export async function generatePicture(word: string, sentence: string, settings: 
 
   const blob = await withModels(settings.aiModel, IMAGE_MODELS, WORKING_IMAGE, async (model) => {
     const body: Record<string, unknown> = { model, prompt, size: '1024x1024', n: 1 };
-    if (model.startsWith('dall-e')) body.response_format = 'b64_json';
+    // Simple pictograms look fine at the cheapest quality (about 1¢ a picture instead of up to ~17¢).
+    if (model.startsWith('dall-e')) {
+      body.response_format = 'b64_json';
+      if (model === 'dall-e-3') body.quality = 'standard';
+    } else body.quality = 'low';
     const data = await call('/images/generations', body, settings.aiKey);
     const item = data?.data?.[0];
     if (item?.b64_json) return base64ToBlob(item.b64_json, 'image/png');

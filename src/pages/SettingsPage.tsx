@@ -206,7 +206,7 @@ export function SettingsPage() {
         <p>
           With your own OpenAI API key the app can: <strong>read each whole sentence</strong> so words get the picture for the right
           meaning (“on top of the table” instead of a clothing top), <strong>read page photos</strong> much more accurately, and{' '}
-          <strong>draw a picture</strong> for any word that has no symbol. It costs a few cents per book (about 4¢ per drawn picture).
+          <strong>draw a picture</strong> for any word that has no symbol. OpenAI charges your account for this, not the app: reading a book costs a few cents, and each drawn picture about 1¢ (pictures are drawn once and reused).
           The key is stored only on this device; page text and photos are sent to OpenAI when AI is used. Everything it makes is saved and
           works offline.
         </p>
