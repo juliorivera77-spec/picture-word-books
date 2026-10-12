@@ -1,4 +1,5 @@
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { useEffect } from 'react';
+import { HashRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { SettingsProvider } from './lib/settings';
 import { AddBook } from './pages/AddBook';
 import { CollectionBookPage } from './pages/CollectionBookPage';
@@ -10,6 +11,7 @@ export function App() {
   return (
     <SettingsProvider>
       <HashRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Library />} />
           <Route path="/new" element={<AddBook />} />
@@ -20,4 +22,11 @@ export function App() {
       </HashRouter>
     </SettingsProvider>
   );
+}
+
+/** Start each screen at the top instead of keeping the previous screen's scroll position. */
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => window.scrollTo(0, 0), [pathname]);
+  return null;
 }

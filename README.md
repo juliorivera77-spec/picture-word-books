@@ -8,6 +8,12 @@ offline** once installed.
 
 ## What it does
 
+- **Book collection**: 55 free books, ready to read — first-word books, classic tales retold simply, nursery rhymes,
+  social stories (school, haircut, doctor, brushing teeth…), 26 Book Dash picture books (most illustrated) and
+  *The Tale of Peter Rabbit* with Beatrix Potter's pictures. One tap adds a book to *My books*; its illustrations are saved for offline use.
+- **Write a story with AI** (optional, needs your OpenAI key): describe a topic, the child's name, fun or social story,
+  reading level and length; the AI writes it in simple, literal, picture-friendly words for you to check.
+
 - **Add a book three ways**
   - 📷 **Photos of pages** — the words are read from the photo on the device (Tesseract OCR, no internet needed). You can check and fix the text before making the book.
   - ✍️ **Type or paste** — a blank line starts a new page.
@@ -75,4 +81,8 @@ For the full ARASAAC vocabulary offline, open *Settings → Pictures* while onli
   The core little-word pictures in `public/symbols/core/*.png` are ARASAAC pictograms taken from the
   Cboard project (https://github.com/cboard-org/cboard); the `*.svg` files there were drawn for this app and share the same licence.
 - Mulberry Symbols: © Steve Lee, licence CC BY-SA 4.0 (see `public/symbols/mulberry/LICENSE.txt`).
+- Book Dash books (`public/library/bookdash`, `src/lib/library/bookdash.json`): © their creators, published by Book Dash
+  (https://bookdash.org) under CC BY 4.0; picture symbols added. Imported with `scripts/build-bookdash.mjs`.
+- *The Tale of Peter Rabbit* (Beatrix Potter, 1902): public domain, from Project Gutenberg #14838.
+- Retold tales, nursery rhymes and social stories in `src/lib/library/written.ts` were written for this app.
 - PECS® and Boardmaker/PCS symbols are proprietary and not included.

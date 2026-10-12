@@ -2,7 +2,10 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SymbolImage } from '../components/SymbolImage';
 import { deleteBook, getImage, listBooks } from '../lib/db';
-import { CATEGORIES, COLLECTION, LEVELS, type Category, type CollectionBook } from '../lib/library';
+import { applyHints, CATEGORIES, COLLECTION, LEVELS, type Category, type CollectionBook } from '../lib/library';
+import { matchTokens } from '../lib/symbols/resolver';
+import { tokenize } from '../lib/text';
+import { DEFAULT_SETTINGS } from '../lib/types';
 import { useOnline } from '../lib/settings';
 import type { Book } from '../lib/types';
 
@@ -122,9 +125,42 @@ export function Library() {
   );
 }
 
+const coverSyms = new Map<string, Promise<string[]>>();
+
+/** Up to four pictures from the first page, for books without an illustrated cover. */
+function firstPagePictures(book: CollectionBook) {
+  let p = coverSyms.get(book.id);
+  if (!p) {
+    p = (async () => {
+      const tokens = tokenize(book.pages[0]?.text ?? '');
+      applyHints(tokens, book.hints);
+      await matchTokens([tokens], DEFAULT_SETTINGS);
+      // Things and actions make the best covers; skip little-word pictures like "is".
+      const good = tokens.filter(
+        (t) => t.sym && t.sym !== 'none' && !t.joined && ['noun', 'verb', 'describe'].includes(t.cls) && !/^c:(is|was|do|will|can|the|a|no)\./.test(t.sym),
+      );
+      return [...new Set(good.map((t) => t.sym!))].slice(0, 4);
+    })().catch(() => []);
+    coverSyms.set(book.id, p);
+  }
+  return p;
+}
+
 export function CollectionCover({ book }: { book: CollectionBook }) {
   const img = book.cover ?? book.pages.find((p) => p.image)?.image;
+  const [syms, setSyms] = useState<string[] | null>(null);
+  useEffect(() => {
+    if (!img) firstPagePictures(book).then(setSyms);
+  }, [book, img]);
   if (img) return <img className="cover" src={`${import.meta.env.BASE_URL}${img}`} alt="" loading="lazy" />;
+  if (syms?.length)
+    return (
+      <div className={`cover cover-syms cat-${book.category}`} aria-hidden>
+        {syms.map((s) => (
+          <SymbolImage key={s} symbol={s} alt="" />
+        ))}
+      </div>
+    );
   return (
     <div className={`cover cover-icon cat-${book.category}`} aria-hidden>
       <span>{CATEGORY_ICON[book.category]}</span>
