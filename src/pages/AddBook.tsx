@@ -118,6 +118,7 @@ export function AddBook() {
   const pagesToMake = mode === 'type' && drafts.length === 0 ? splitPages(pasted).map((text) => ({ id: uid(), text })) : drafts;
   const reading = drafts.some((d) => /^(Reading|Waiting|AI is reading)/.test(d.status ?? ''));
   const [cropping, setCropping] = useState<DraftPage | null>(null);
+  const [pickingPicture, setPickingPicture] = useState<DraftPage | null>(null);
 
   const make = async () => {
     setError('');
@@ -189,7 +190,8 @@ export function AddBook() {
             Take a photo of each page, in order — hold the phone flat above the page, in good light.{' '}
             {settings.aiOcr && aiReady(settings)
               ? 'AI reads the words (best for picture books).'
-              : 'The words are read on this device, without internet. If it struggles, use “Select the words” to box just the text.'}
+              : 'The words are read on this device, without internet. If it struggles, use “Select the words” to box just the text.'}{' '}
+            Use <strong>🖼️ Select the picture</strong> to show the book’s illustration with the words.
           </p>
           <div className="row wrap">
             <button type="button" className="btn primary big-btn" onClick={() => camera.current?.click()}>📷 Take a photo</button>
@@ -289,6 +291,7 @@ export function AddBook() {
                 onDown={() => move(i, 1)}
                 onDelete={() => setDrafts((ds) => ds.filter((x) => x.id !== d.id))}
                 onCrop={d.image ? () => setCropping(d) : undefined}
+                onPicture={d.image ? () => setPickingPicture(d) : undefined}
                 onReread={d.image ? () => queueRead(d.id, d.image!) : undefined}
               />
             ))}
@@ -303,6 +306,22 @@ export function AddBook() {
           onDone={(area) => {
             queueRead(cropping.id, cropping.image!, area);
             setCropping(null);
+          }}
+        />
+      )}
+
+      {pickingPicture?.image && (
+        <CropTool
+          image={pickingPicture.image}
+          title="Select the picture"
+          help="Drag over the illustration on this page. It will be shown above the words in the book."
+          doneLabel="Use this picture"
+          onCancel={() => setPickingPicture(null)}
+          onDone={async (area) => {
+            const id = pickingPicture.id;
+            const picture = await cropImage(pickingPicture.image!, area);
+            setPickingPicture(null);
+            patch(id, { picture });
           }}
         />
       )}
@@ -328,6 +347,7 @@ function DraftRow({
   onDelete,
   onCrop,
   onReread,
+  onPicture,
 }: {
   draft: DraftPage;
   n: number;
@@ -337,14 +357,18 @@ function DraftRow({
   onDelete: () => void;
   onCrop?: () => void;
   onReread?: () => void;
+  onPicture?: () => void;
 }) {
   const url = useMemo(() => (draft.image ? URL.createObjectURL(draft.image) : null), [draft.image]);
   useEffect(() => () => void (url && URL.revokeObjectURL(url)), [url]);
+  const picUrl = useMemo(() => (draft.picture ? URL.createObjectURL(draft.picture) : null), [draft.picture]);
+  useEffect(() => () => void (picUrl && URL.revokeObjectURL(picUrl)), [picUrl]);
   return (
     <div className="draft">
       <div className="draft-side">
         <strong>Page {n}</strong>
         {url && <img src={url} alt={`page ${n}`} />}
+        {picUrl && <img className="pic-thumb" src={picUrl} alt={`picture for page ${n}`} />}
         <div className="row">
           <button type="button" className="icon-btn" onClick={onUp} aria-label="Move up">▲</button>
           <button type="button" className="icon-btn" onClick={onDown} aria-label="Move down">▼</button>
@@ -356,6 +380,7 @@ function DraftRow({
         {(onCrop || onReread) && (
           <div className="row wrap">
             {onCrop && <button type="button" className="btn small" onClick={onCrop}>✂️ Select the words</button>}
+            {onPicture && <button type="button" className="btn small" onClick={onPicture}>🖼️ {draft.picture ? 'Change' : 'Select'} the picture</button>}
             {onReread && <button type="button" className="btn small" onClick={onReread}>↻ Read again</button>}
           </div>
         )}

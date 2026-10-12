@@ -2,7 +2,8 @@ import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'rea
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { Modal, SymbolPicker, type PickResult } from '../components/SymbolPicker';
 import { WordCard } from '../components/WordCard';
-import { generateMissing, improveWithAI, retokenizePage } from '../lib/books';
+import { CropTool, cropImage } from '../components/CropTool';
+import { generateMissing, improveWithAI, pagePictureId, retokenizePage, setPagePicture } from '../lib/books';
 import { getBook, getImage, saveBook, setWordPref } from '../lib/db';
 import { useOnline, useSettings } from '../lib/settings';
 import { speak, stopSpeaking } from '../lib/speech';
@@ -42,8 +43,12 @@ export function Reader() {
   const [filling, setFilling] = useState(false);
   const [active, setActive] = useState<number | null>(null);
   const [reading, setReading] = useState(false);
-  const [showScan, setShowScan] = useState(false);
   const [scanUrl, setScanUrl] = useState<string | null>(null);
+  const [scanBlob, setScanBlob] = useState<Blob | null>(null);
+  const [pictureUrl, setPictureUrl] = useState<string | null>(null);
+  const [lightbox, setLightbox] = useState<string | null>(null);
+  const [croppingScan, setCroppingScan] = useState(false);
+  const pictureInput = useRef<HTMLInputElement>(null);
   const [editText, setEditText] = useState<string | null>(null);
   const [status, setStatus] = useState('');
   const location = useLocation();
@@ -54,8 +59,6 @@ export function Reader() {
   useEffect(() => {
     getBook(id!).then((b) => {
       setBook(b ?? null);
-      // Collection books show their illustrations above the words.
-      if (b?.source) setShowScan(true);
       const saved = Number(localStorage.getItem(`pwb-pos-${id}`) ?? 0);
       if (b && saved < b.pages.length) setPageNo(saved);
     });
@@ -66,17 +69,39 @@ export function Reader() {
   const groups = useMemo(() => (page ? groupsOf(page) : []), [page, book]);
   const refresh = () => setBook((b) => (b ? { ...b } : b));
 
+  // The page's picture (shown with the words) and, separately, the original page photo if there is one.
+  const pictureId = book && page ? pagePictureId(book, page) : undefined;
+  const scanId = page?.imageId && page.imageId !== pictureId ? page.imageId : undefined;
   useEffect(() => {
-    let url: string | null = null;
+    const urls: string[] = [];
+    setPictureUrl(null);
     setScanUrl(null);
-    if (page?.imageId)
-      getImage(page.imageId).then((img) => {
-        if (img) setScanUrl((url = URL.createObjectURL(img.blob)));
+    setScanBlob(null);
+    if (pictureId)
+      getImage(pictureId).then((img) => {
+        if (img) {
+          const u = URL.createObjectURL(img.blob);
+          urls.push(u);
+          setPictureUrl(u);
+        }
       });
-    return () => {
-      if (url) URL.revokeObjectURL(url);
-    };
-  }, [page?.imageId]);
+    if (scanId)
+      getImage(scanId).then((img) => {
+        if (img) {
+          const u = URL.createObjectURL(img.blob);
+          urls.push(u);
+          setScanUrl(u);
+          setScanBlob(img.blob);
+        }
+      });
+    return () => urls.forEach((u) => URL.revokeObjectURL(u));
+  }, [pictureId, scanId]);
+
+  const changePicture = async (blob: Blob | null) => {
+    if (!book) return;
+    await setPagePicture(book, pageNo, blob);
+    refresh();
+  };
 
   const go = useCallback(
     (n: number) => {
@@ -281,32 +306,54 @@ export function Reader() {
               </button>
             </>
           )}
-          {scanUrl && (
-            <>
-              , or{' '}
-              <button type="button" className="link" onClick={() => setShowScan((s) => !s)}>
-                {showScan ? 'hide' : 'show'} the original page photo
-              </button>
-            </>
-          )}
           .
+          <span className="row wrap page-tools">
+            <button type="button" className="btn small" onClick={() => pictureInput.current?.click()}>
+              🖼️ {pictureUrl ? 'Change' : 'Add a'} picture for this page
+            </button>
+            {scanBlob && (
+              <button type="button" className="btn small" onClick={() => setCroppingScan(true)}>
+                ✂️ Use part of the page photo
+              </button>
+            )}
+            {pictureUrl && (
+              <button type="button" className="btn small" onClick={() => changePicture(null)}>
+                Remove picture
+              </button>
+            )}
+            {scanUrl && (
+              <button type="button" className="btn small" onClick={() => setLightbox(scanUrl)}>
+                📄 See the page photo
+              </button>
+            )}
+          </span>
+          <input
+            ref={pictureInput}
+            type="file"
+            accept="image/*"
+            hidden
+            onChange={(e) => {
+              const f = e.target.files?.[0];
+              e.target.value = '';
+              if (f) changePicture(f);
+            }}
+          />
         </div>
       )}
 
       {missingWords.length > 0 && !status && (
-        <div className="notice warn no-print">
-          {missingWords.length} word{missingWords.length === 1 ? '' : 's'} still need{missingWords.length === 1 ? 's' : ''} a picture:{' '}
-          <em>{missingWords.slice(0, 12).join(', ')}{missingWords.length > 12 ? '…' : ''}</em>
-          <span className="row wrap" style={{ marginTop: 6 }}>
-            <button type="button" className="btn small primary" onClick={fillBlanks}>
-              🧩 Fill in the blanks
-            </button>
-            {aiOn && (
-              <button type="button" className="btn small" disabled={!online} onClick={aiAll}>
-                ✨ Draw {missingWords.length === 1 ? 'it' : 'them'} with AI{!online ? ' (needs internet)' : ''}
-              </button>
-            )}
+        <div className="blanks-bar no-print">
+          <span className="grow">
+            {missingWords.length} word{missingWords.length === 1 ? '' : 's'} without a picture
           </span>
+          <button type="button" className="btn small primary" onClick={fillBlanks}>
+            🧩 Fill in
+          </button>
+          {aiOn && (
+            <button type="button" className="btn small" disabled={!online} onClick={aiAll}>
+              ✨ AI
+            </button>
+          )}
         </div>
       )}
       {status && <p className="notice no-print">⏳ {status}</p>}
@@ -327,10 +374,42 @@ export function Reader() {
           if (Math.abs(dx) > 70) go(pageNo + (dx < 0 ? 1 : -1));
         }}
       >
-        {(showScan || !page.tokens.length) && scanUrl && <img className="scan" src={scanUrl} alt="page illustration" />}
-        <PageCards groups={groups} settings={settings} active={active} editing={editing} onTap={tapCard} />
+        {pictureUrl && (settings.showPictures || !page.tokens.length) ? (
+          <div className={`spread ${page.tokens.length ? '' : 'picture-only'}`}>
+            <button type="button" className="page-picture" onClick={() => setLightbox(pictureUrl)} aria-label="Show the picture bigger">
+              <img src={pictureUrl} alt="" />
+            </button>
+            {page.tokens.length > 0 && (
+              <div className="spread-words">
+                <PageCards groups={groups} settings={settings} active={active} editing={editing} onTap={tapCard} />
+              </div>
+            )}
+          </div>
+        ) : (
+          <PageCards groups={groups} settings={settings} active={active} editing={editing} onTap={tapCard} />
+        )}
         {book.source && (pageNo === 0 || pageNo === book.pages.length - 1) && <p className="credit center">{book.source.credit}</p>}
       </main>
+
+      {lightbox && (
+        <div className="lightbox no-print" onClick={() => setLightbox(null)} role="dialog" aria-label="Picture">
+          <img src={lightbox} alt="" />
+          <span className="hint">Tap to close</span>
+        </div>
+      )}
+      {croppingScan && scanBlob && (
+        <CropTool
+          image={scanBlob}
+          title="Select the picture"
+          help="Drag over the illustration on the page photo. Leave the printed words out."
+          doneLabel="Use this picture"
+          onCancel={() => setCroppingScan(false)}
+          onDone={async (area) => {
+            setCroppingScan(false);
+            await changePicture(await cropImage(scanBlob, area));
+          }}
+        />
+      )}
 
       <footer className="pager no-print">
         <button type="button" className="nav-btn" disabled={pageNo === 0} onClick={() => go(pageNo - 1)} aria-label="Previous page">◀</button>

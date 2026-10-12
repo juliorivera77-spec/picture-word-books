@@ -160,6 +160,10 @@ export function SettingsPage() {
           </select>
         </label>
         <label className="row check">
+          <input type="checkbox" checked={settings.showPictures} onChange={(e) => update({ showPictures: e.target.checked })} />
+          Show the book’s pictures with the words (turn off if they are distracting)
+        </label>
+        <label className="row check">
           <input type="checkbox" checked={settings.colorCode} onChange={(e) => update({ colorCode: e.target.checked })} />
           Colour-code words by type (Modified Fitzgerald Key)
         </label>

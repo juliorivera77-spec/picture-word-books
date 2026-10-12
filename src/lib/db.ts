@@ -54,12 +54,18 @@ export async function deleteBook(id: string) {
   const book = await d.get('books', id);
   await d.delete('books', id);
   // Page scans belong to the book alone; symbols and user pictures may be shared.
-  for (const p of book?.pages ?? []) if (p.imageId) await d.delete('images', p.imageId);
+  for (const p of book?.pages ?? []) {
+    if (p.imageId) await d.delete('images', p.imageId);
+    if (p.pictureId) await d.delete('images', p.pictureId);
+  }
 }
 
 // ---------- images ----------
 export async function putImage(id: string, blob: Blob, kind: ImageKind, label?: string) {
   await (await db()).put('images', { blob, kind, created: Date.now(), label }, id);
+}
+export async function deleteImage(id: string) {
+  await (await db()).delete('images', id);
 }
 export async function getImage(id: string) {
   return (await db()).get('images', id);

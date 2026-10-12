@@ -170,3 +170,25 @@ a.book-tile { text-decoration: none; color: inherit; }
 .small-modal { max-width: 420px; border-radius: 16px; }
 .steps { background: #e8f0ff; border-radius: 12px; padding: 10px 14px 10px 34px; margin: 0 0 8px; line-height: 1.5; }
 .steps li { margin: 2px 0; }
+
+/* Book-style page: the book's picture with the symbol words */
+.spread { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.page-picture { border: none; padding: 0; background: none; cursor: zoom-in; max-width: 100%; }
+.page-picture img { display: block; max-width: 100%; max-height: 46vh; border-radius: 14px; box-shadow: 0 3px 14px rgba(0,0,0,.14); background: #fff; }
+.spread.picture-only .page-picture img { max-height: 70vh; }
+.spread-words { width: 100%; }
+@media (orientation: landscape) and (min-width: 760px) {
+  .spread { flex-direction: row; align-items: center; gap: 28px; }
+  .spread > .page-picture { flex: 1 1 50%; display: flex; justify-content: center; }
+  .spread > .page-picture img { max-height: 70vh; }
+  .spread-words { flex: 1 1 50%; }
+  .spread.picture-only > .page-picture { flex: 1; }
+}
+.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.88); z-index: 60; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 16px; }
+.lightbox img { max-width: 100%; max-height: 88vh; object-fit: contain; border-radius: 8px; }
+.lightbox .hint { color: #ddd; }
+.page-tools { margin-top: 8px; }
+.draft-side .pic-thumb { border: 3px solid var(--brand); }
+.blanks-bar { display: flex; align-items: center; gap: 8px; margin: 8px 16px 0; padding: 6px 10px; background: var(--warn-bg); border-radius: 12px; font-size: .95rem; }
+.blanks-bar .btn.small { margin-left: 0; }
+@media (orientation: portrait) { .page-picture img { max-height: 36vh; } .spread.picture-only .page-picture img { max-height: 62vh; } }

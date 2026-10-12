@@ -26,7 +26,21 @@ export async function cropImage(image: Blob, a: CropArea): Promise<Blob> {
 }
 
 /** Drag a box around the words on a page photo, so pictures and background are ignored. */
-export function CropTool({ image, onDone, onCancel }: { image: Blob; onDone: (a: CropArea) => void; onCancel: () => void }) {
+export function CropTool({
+  image,
+  onDone,
+  onCancel,
+  title = 'Select the words',
+  help = 'Drag your finger over the text on the page to draw a box around it. Leave the pictures out.',
+  doneLabel = 'Read these words',
+}: {
+  image: Blob;
+  onDone: (a: CropArea) => void;
+  onCancel: () => void;
+  title?: string;
+  help?: string;
+  doneLabel?: string;
+}) {
   const url = useMemo(() => URL.createObjectURL(image), [image]);
   useEffect(() => () => URL.revokeObjectURL(url), [url]);
   const box = useRef<HTMLDivElement>(null);
@@ -52,8 +66,8 @@ export function CropTool({ image, onDone, onCancel }: { image: Blob; onDone: (a:
   const ok = area && area.w > 0.03 && area.h > 0.02;
 
   return (
-    <Modal title="Select the words" onClose={onCancel}>
-      <p className="hint">Drag your finger over the text on the page to draw a box around it. Leave the pictures out.</p>
+    <Modal title={title} onClose={onCancel}>
+      <p className="hint">{help}</p>
       <div ref={box} className="crop-box" onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={up}>
         <img src={url} alt="page" draggable={false} />
         {area && (
@@ -65,7 +79,7 @@ export function CropTool({ image, onDone, onCancel }: { image: Blob; onDone: (a:
       </div>
       <div className="row end">
         <button type="button" className="btn" onClick={onCancel}>Cancel</button>
-        <button type="button" className="btn primary" disabled={!ok} onClick={() => ok && onDone(area)}>Read these words</button>
+        <button type="button" className="btn primary" disabled={!ok} onClick={() => ok && onDone(area)}>{doneLabel}</button>
       </div>
     </Modal>
   );

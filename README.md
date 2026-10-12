@@ -10,7 +10,10 @@ offline** once installed.
 
 - **Book collection**: 55 free books, ready to read — first-word books, classic tales retold simply, nursery rhymes,
   social stories (school, haircut, doctor, brushing teeth…), 26 Book Dash picture books (most illustrated) and
-  *The Tale of Peter Rabbit* with Beatrix Potter's pictures. One tap adds a book to *My books*; its illustrations are saved for offline use.
+  five Beatrix Potter tales and three *Real Mother Goose* rhyme books with their original pictures, and retold tales
+  illustrated by L. Leslie Brooke. One tap adds a book to *My books*; its illustrations are saved for offline use.
+- **Book-style pages**: each page shows the book's picture with the symbol words (side by side on a tablet in landscape);
+  tap the picture to see it full screen. Add a picture to any page of your own books, or select it from a page photo.
 - **Write a story with AI** (optional, needs your OpenAI key): describe a topic, the child's name, fun or social story,
   reading level and length; the AI writes it in simple, literal, picture-friendly words for you to check.
 
@@ -83,6 +86,7 @@ For the full ARASAAC vocabulary offline, open *Settings → Pictures* while onli
 - Mulberry Symbols: © Steve Lee, licence CC BY-SA 4.0 (see `public/symbols/mulberry/LICENSE.txt`).
 - Book Dash books (`public/library/bookdash`, `src/lib/library/bookdash.json`): © their creators, published by Book Dash
   (https://bookdash.org) under CC BY 4.0; picture symbols added. Imported with `scripts/build-bookdash.mjs`.
-- *The Tale of Peter Rabbit* (Beatrix Potter, 1902): public domain, from Project Gutenberg #14838.
+- Beatrix Potter tales, *The Real Mother Goose* (Blanche Fisher Wright, 1916) and L. Leslie Brooke's pictures:
+  public domain, from Project Gutenberg (via GITenberg). Imported with `scripts/build-classics.mjs`.
 - Retold tales, nursery rhymes and social stories in `src/lib/library/written.ts` were written for this app.
 - PECS® and Boardmaker/PCS symbols are proprietary and not included.

@@ -21,6 +21,7 @@ export async function exportBackup(): Promise<Blob> {
   for (const b of books)
     for (const p of b.pages) {
       if (p.imageId) needed.add(p.imageId);
+      if (p.pictureId) needed.add(p.pictureId);
       for (const t of p.tokens) if (t.sym && /^[au]:/.test(t.sym)) needed.add(t.sym);
     }
   for (const [, s] of wordPrefs) if (/^[au]:/.test(s)) needed.add(s);

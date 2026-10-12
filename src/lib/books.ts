@@ -1,5 +1,5 @@
 import { aiReady, generatePicture, readSentences } from './ai';
-import { listBooks, putImage, saveBook, setWordPref, uid } from './db';
+import { deleteImage, listBooks, putImage, saveBook, setWordPref, uid } from './db';
 import { applyHints, type CollectionBook } from './library';
 import { shrinkImage } from './images';
 import { matchTokens, type MatchResult } from './symbols/resolver';
@@ -21,7 +21,12 @@ export async function createBook(
       imageId = `s:${uid()}`;
       await putImage(imageId, await shrinkImage(d.image, 1400, 'image/jpeg', 0.8), 'scan');
     }
-    book.pages.push({ id: uid(), text: d.text.trim(), tokens: tokenize(d.text.trim()), imageId });
+    let pictureId: string | undefined;
+    if (d.picture) {
+      pictureId = `p:${uid()}`;
+      await putImage(pictureId, await shrinkImage(d.picture, 1200, 'image/jpeg', 0.82), 'scan');
+    }
+    book.pages.push({ id: uid(), text: d.text.trim(), tokens: tokenize(d.text.trim()), imageId, pictureId });
   }
   const aiError = await aiReadSentences(book, settings, onStatus);
   onStatus('Finding pictures…');
@@ -143,13 +148,13 @@ export async function addFromCollection(cb: CollectionBook, settings: Settings, 
   let n = 0;
   for (const p of cb.pages) {
     onStatus(`Getting the book ready… page ${++n} of ${cb.pages.length}`);
-    let imageId: string | undefined;
+    let pictureId: string | undefined;
     if (p.image) {
       try {
         const res = await fetch(`${import.meta.env.BASE_URL}${p.image}`);
         if (res.ok) {
-          imageId = `s:${uid()}`;
-          await putImage(imageId, await res.blob(), 'scan');
+          pictureId = `p:${uid()}`;
+          await putImage(pictureId, await res.blob(), 'scan');
         }
       } catch {
         /* offline: the page works without its illustration */
@@ -157,7 +162,7 @@ export async function addFromCollection(cb: CollectionBook, settings: Settings, 
     }
     const tokens = tokenize(p.text.trim());
     applyHints(tokens, cb.hints);
-    book.pages.push({ id: uid(), text: p.text.trim(), tokens, imageId });
+    book.pages.push({ id: uid(), text: p.text.trim(), tokens, pictureId });
   }
   onStatus('Finding pictures…');
   await matchTokens(
@@ -167,4 +172,25 @@ export async function addFromCollection(cb: CollectionBook, settings: Settings, 
   );
   await saveBook(book);
   return book;
+}
+
+/** The picture shown with a page's words. (Collection books added before pictures had their own field used imageId.) */
+export function pagePictureId(book: Book, page: Book['pages'][number]): string | undefined {
+  return page.pictureId ?? (book.source ? page.imageId : undefined);
+}
+
+/** Set or remove a page's picture. */
+export async function setPagePicture(book: Book, pageIndex: number, picture: Blob | null) {
+  const page = book.pages[pageIndex];
+  if (page.pictureId) await deleteImage(page.pictureId);
+  if (book.source && !page.pictureId && page.imageId) {
+    await deleteImage(page.imageId);
+    page.imageId = undefined;
+  }
+  page.pictureId = undefined;
+  if (picture) {
+    page.pictureId = `p:${uid()}`;
+    await putImage(page.pictureId, await shrinkImage(picture, 1200, 'image/jpeg', 0.82), 'scan');
+  }
+  await saveBook(book);
 }

@@ -54,6 +54,8 @@ export interface Page {
   tokens: Token[];
   /** Original page photo/scan, stored as an image id. */
   imageId?: string;
+  /** The page's picture (book illustration), shown with the words. */
+  pictureId?: string;
 }
 
 export interface Book {
@@ -75,6 +77,8 @@ export interface Settings {
   wordPosition: WordPosition;
   textCase: TextCase;
   colorCode: boolean;
+  /** Show each page's picture (book illustration) with the words. */
+  showPictures: boolean;
   sourceOrder: ('arasaac' | 'mulberry')[];
   voiceURI: string;
   speechRate: number;
@@ -97,6 +101,7 @@ export const DEFAULT_SETTINGS: Settings = {
   wordPosition: 'below',
   textCase: 'asis',
   colorCode: false,
+  showPictures: true,
   sourceOrder: ['arasaac', 'mulberry'],
   voiceURI: '',
   speechRate: 0.85,
@@ -115,5 +120,7 @@ export interface DraftPage {
   id: string;
   text: string;
   image?: Blob;
+  /** Part of the photo chosen as the page's picture. */
+  picture?: Blob;
   status?: string;
 }

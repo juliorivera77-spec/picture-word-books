@@ -181,6 +181,17 @@ export async function matchTokens(
       if (!t.manual) t.span = undefined;
     }
 
+  // Without the offline dictionary, ARASAAC is searched online word by word. Look all the words up
+  // in parallel first (results are remembered), so matching below does not wait for each one in turn.
+  if (!arasaacOffline && order.includes('arasaac') && navigator.onLine) {
+    const words = [...new Set(pages.flat().flatMap((t) => [t.key, ...t.alts, ...(t.concept ? [t.concept] : [])]))].filter((w) => !lookupCore(w));
+    let next = 0;
+    const worker = async () => {
+      while (next < words.length) await lookupArasaac(words[next++]);
+    };
+    await Promise.all(Array.from({ length: 8 }, worker));
+  }
+
   const total = pages.reduce((n, p) => n + p.length, 0);
   let done = 0;
   for (const tokens of pages) {
