@@ -134,14 +134,17 @@ export async function matchTokens(
         }
       }
     }
-    if (!found) {
+    // First only pictures of the right kind (a thing for a noun); if there are none,
+    // any picture of the word ("go to sleep" can use the "to sleep" picture) rather than a blank.
+    for (const strict of [true, false]) {
+      if (found) break;
       outer: for (const w of words) {
         if (prefs.has(w)) {
           found = prefs.get(w)!;
           break;
         }
         for (const s of order) {
-          const r = await lookupIn(s, w, t.cls, true);
+          const r = await lookupIn(s, w, t.cls, strict);
           if (r && !sense?.avoid?.includes(r)) {
             found = r;
             break outer;

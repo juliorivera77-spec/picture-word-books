@@ -35,7 +35,7 @@ function parseCsv(text) {
 
 const [header, ...rows] = parseCsv(fs.readFileSync(path.join(src, 'scripts/data/symbol-info-en.csv'), 'utf8'));
 const col = (n) => header.indexOf(n);
-const VARIANT = new Set(['man', 'lady', 'boy', 'girl', 'woman', 'male', 'female', 'person', 'parent']);
+const VARIANT = new Set(['man', 'lady', 'boy', 'girl', 'woman', 'male', 'female', 'person', 'parent', 'mans', 'ladies']);
 
 const index = {}; // keyword -> [{n: name, s: score}]
 const add = (key, name, score) => {
@@ -60,12 +60,18 @@ for (const r of rows) {
   (shards[shard] ||= {})[name] = svg;
   count++;
 
-  // Derive keywords from the symbol name: "eat_2_,_to" -> "eat", "ice_cream" -> "ice cream"
-  let base = name.replace(/_,_to(_\d+)?$/, '').replace(/_\d+$/, '').replace(/_[a-z]$/, '');
-  const isNumbered = base !== name.replace(/_,_to(_\d+)?$/, '');
-  const words = base.split('_').filter(Boolean);
-  add(words.join(' '), name, isNumbered ? 1 : 0);
-  // "afraid_man" / "afraid_lady" are both just "afraid"
+  // Derive keywords from the symbol name: "eat_2_,_to" -> "eat", "doctor_1a" -> "doctor", "shoe_-_ladies" -> "shoe"
+  const verb = name.replace(/_,_to(_\d+)?$/, '');
+  let base = verb;
+  for (let prev = ''; prev !== base; ) {
+    prev = base;
+    base = base.replace(/_(\d+[a-z]?|[a-z])$/, '');
+  }
+  const dashed = base.split('_-_');
+  const isNumbered = base !== verb;
+  const words = dashed[0].split('_').filter(Boolean);
+  add(words.join(' '), name, isNumbered || dashed.length > 1 ? 1 : 0);
+  // "afraid_man" / "sleep_female" are both just "afraid" / "sleep"
   if (words.length === 2 && VARIANT.has(words[1])) add(words[0], name, 2);
 }
 

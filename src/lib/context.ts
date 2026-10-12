@@ -63,7 +63,7 @@ export function senseFor(tokens: Token[], i: number): Sense | null {
       return /^(the|at|to)$/.test(prev) ? { ref: 'm:under_1' } : null;
     case 'park':
     case 'parks':
-      return t.cls === 'verb' ? { words: ['park'] } : { words: ['park', 'playground'], skipCore: true };
+      return t.cls === 'verb' ? { words: ['park'] } : { words: ['park', 'playground'], skipCore: true, avoid: ['m:park_,_to'] };
     case 'saw':
       return t.cls === 'verb' || /^(i|he|she|we|they|you|it)$/.test(prev) ? { ref: 'c:watch.png' } : { ref: 'm:saw' };
     case 'watch':
