@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { HowTo, useGuide } from '../components/HowTo';
 import { SymbolImage } from '../components/SymbolImage';
 import { createBook, SAMPLE_TEXT } from '../lib/books';
 import { deleteBook, getImage, listBooks, uid } from '../lib/db';
@@ -15,6 +16,7 @@ export function Library() {
   const online = useOnline();
   const { settings } = useSettings();
   const nav = useNavigate();
+  const [guide, setGuide] = useGuide();
 
   const refresh = () => listBooks().then(setBooks);
   useEffect(() => {
@@ -35,9 +37,12 @@ export function Library() {
         <h1>📚 Picture Word Books</h1>
         <div className="row">
           {!online && <span className="badge">Offline</span>}
+          <button type="button" className="icon-btn" aria-label="How to use" onClick={() => setGuide(!guide)}>❓</button>
           <Link className="icon-btn" to="/settings" aria-label="Settings">⚙️</Link>
         </div>
       </header>
+
+      {guide && <HowTo onClose={() => setGuide(false)} />}
 
       {!hasDict && (
         <div className="notice">

@@ -39,6 +39,7 @@ export function Reader() {
   const [pageNo, setPageNo] = useState(0);
   const [editing, setEditing] = useState(false);
   const [picking, setPicking] = useState<number | null>(null);
+  const [filling, setFilling] = useState(false);
   const [active, setActive] = useState<number | null>(null);
   const [reading, setReading] = useState(false);
   const [showScan, setShowScan] = useState(false);
@@ -167,6 +168,7 @@ export function Reader() {
     refresh();
     if (sym.startsWith('a:')) await cacheArasaac(Number(sym.slice(2)));
     await saveBook(book);
+    if (filling) nextBlank(book, pageNo);
   };
 
   const fixWord = async (text: string) => {
@@ -199,6 +201,27 @@ export function Reader() {
     setEditText(null);
     setStatus('');
     refresh();
+  };
+
+  /** Open the next word with no picture (this page first, then later pages, then from the start). */
+  const nextBlank = (b: Book, fromPage: number) => {
+    const n = b.pages.length;
+    for (let k = 0; k < n; k++) {
+      const p = (fromPage + k) % n;
+      const i = b.pages[p].tokens.findIndex((t) => !t.sym && !t.joined);
+      if (i >= 0) {
+        if (p !== pageNo) go(p);
+        setEditing(true);
+        setPicking(i);
+        return true;
+      }
+    }
+    setFilling(false);
+    return false;
+  };
+  const fillBlanks = () => {
+    setFilling(true);
+    nextBlank(book, pageNo);
   };
 
   const missingWords = [...new Set(book.pages.flatMap((p) => p.tokens.filter((t) => !t.sym && !t.joined).map((t) => t.key)))];
@@ -272,16 +295,16 @@ export function Reader() {
         <div className="notice warn no-print">
           {missingWords.length} word{missingWords.length === 1 ? '' : 's'} still need{missingWords.length === 1 ? 's' : ''} a picture:{' '}
           <em>{missingWords.slice(0, 12).join(', ')}{missingWords.length > 12 ? '…' : ''}</em>
-          {aiOn ? (
-            <button type="button" className="btn small" disabled={!online} onClick={aiAll}>
-              ✨ Draw {missingWords.length === 1 ? 'it' : 'them'} with AI{!online ? ' (needs internet)' : ''}
+          <span className="row wrap" style={{ marginTop: 6 }}>
+            <button type="button" className="btn small primary" onClick={fillBlanks}>
+              🧩 Fill in the blanks
             </button>
-          ) : (
-            <>
-              {' '}— tap <strong>Edit</strong>, then a blank card to add a photo or drawing, or turn on AI pictures in{' '}
-              <Link to="/settings">Settings</Link>.
-            </>
-          )}
+            {aiOn && (
+              <button type="button" className="btn small" disabled={!online} onClick={aiAll}>
+                ✨ Draw {missingWords.length === 1 ? 'it' : 'them'} with AI{!online ? ' (needs internet)' : ''}
+              </button>
+            )}
+          </span>
         </div>
       )}
       {status && <p className="notice no-print">⏳ {status}</p>}
@@ -335,7 +358,12 @@ export function Reader() {
           onPick={pick}
           onFixWord={fixWord}
           onSplit={picked.span ? split : undefined}
-          onClose={() => setPicking(null)}
+          onClose={() => {
+            setPicking(null);
+            setFilling(false);
+          }}
+          filling={filling}
+          blanksLeft={missingWords.length}
         />
       )}
 

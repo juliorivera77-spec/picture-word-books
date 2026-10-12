@@ -154,3 +154,10 @@ input[type=range] { width: 100%; }
 .crop-box { position: relative; touch-action: none; user-select: none; max-height: 65vh; overflow: hidden; border-radius: 10px; margin: 8px 0; }
 .crop-box img { display: block; width: 100%; max-height: 65vh; object-fit: contain; pointer-events: none; }
 .crop-sel { position: absolute; border: 3px dashed var(--brand); box-shadow: 0 0 0 9999px rgba(0, 0, 0, .45); pointer-events: none; }
+.guide { background: var(--panel); border: 2px solid #b8c7e8; border-radius: 16px; padding: 14px 16px; margin: 0 0 16px; line-height: 1.5; }
+.guide-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.guide-head h2 { margin: 0; }
+.guide h3 { margin: 14px 0 4px; color: var(--brand); }
+.guide ol, .guide ul { margin: 4px 0; padding-left: 22px; }
+.guide li { margin: 4px 0; }
+.guide p { margin: 8px 0; }

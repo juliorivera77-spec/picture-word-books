@@ -26,6 +26,8 @@ export function SymbolPicker({
   onFixWord,
   onSplit,
   onClose,
+  filling,
+  blanksLeft,
 }: {
   token: Token;
   phrase: string;
@@ -35,6 +37,9 @@ export function SymbolPicker({
   onFixWord: (text: string) => void;
   onSplit?: () => void;
   onClose: () => void;
+  /** Stepping through blank words one after another. */
+  filling?: boolean;
+  blanksLeft?: number;
 }) {
   const online = useOnline();
   const [query, setQuery] = useState(phrase.toLowerCase());
@@ -44,6 +49,31 @@ export function SymbolPicker({
   const [error, setError] = useState('');
   const [drawing, setDrawing] = useState(false);
   const [wordText, setWordText] = useState(token.text);
+  const [copyMsg, setCopyMsg] = useState('');
+  const [copyText, setCopyText] = useState('');
+
+  // A ready-made request so ChatGPT (or another image tool) makes a matching picture symbol.
+  const chatgptRequest = () => {
+    const sentences = sentence.split(/(?<=[.!?])\s+/);
+    const inSentence = sentences.find((x) => x.toLowerCase().includes(phrase.toLowerCase())) ?? sentence;
+    return (
+      `Please make a simple picture symbol (like PECS or ARASAAC pictograms used with autistic children) that shows the word "${phrase}"` +
+      (inSentence ? ` as it is used in this sentence from a children's book: "${inSentence.trim()}"` : '.') +
+      '\n\nStyle: flat bright colours, thick black outlines, plain white background, one clear subject in the middle, square image.' +
+      ' Do not put any words, letters or numbers in the picture.'
+    );
+  };
+  const copyRequest = async () => {
+    const text = chatgptRequest();
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopyText('');
+      setCopyMsg('Copied! Paste it into ChatGPT, save the picture to your Photos, then tap 🖼️ Choose image.');
+    } catch {
+      setCopyText(text);
+      setCopyMsg('Select the text below, copy it, and paste it into ChatGPT.');
+    }
+  };
   const photoInput = useRef<HTMLInputElement>(null);
   const fileInput = useRef<HTMLInputElement>(null);
 
@@ -106,7 +136,7 @@ export function SymbolPicker({
     );
 
   return (
-    <Modal onClose={onClose} title={`Picture for “${phrase}”`}>
+    <Modal onClose={onClose} title={filling ? `Fill in: “${phrase}” (${blanksLeft} left)` : `Picture for “${phrase}”`}>
       <div className="picker-current">
         <SymbolImage symbol={token.sym} alt="current picture" />
         <div className="grow">
@@ -141,10 +171,14 @@ export function SymbolPicker({
             ✨ AI picture{!online ? ' (offline)' : ''}
           </button>
         )}
+        <button type="button" className="btn" onClick={copyRequest}>📋 Copy ChatGPT request</button>
         <button type="button" className="btn" onClick={() => onPick({ sym: 'none', always })}>🚫 No picture</button>
         <input ref={photoInput} type="file" accept="image/*" capture="environment" hidden onChange={onFile} />
         <input ref={fileInput} type="file" accept="image/*" hidden onChange={onFile} />
       </div>
+
+      {copyMsg && <p className="hint">{copyMsg}</p>}
+      {copyText && <textarea rows={4} readOnly value={copyText} onFocus={(e) => e.target.select()} />}
 
       <form className="row" onSubmit={search}>
         <input className="grow" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search for a picture…" />

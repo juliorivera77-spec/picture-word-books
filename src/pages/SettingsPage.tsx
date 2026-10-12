@@ -91,12 +91,27 @@ export function SettingsPage() {
   const doExport = async () => {
     setBackupMsg('Preparing backup…');
     const blob = await exportBackup();
+    const name = `picture-books-backup-${new Date().toISOString().slice(0, 10)}.json`;
+    const file = new File([blob], name, { type: 'application/json' });
+    // On phones, the Share sheet lets you send it by Messages, email or AirDrop, or save it to Files.
+    if (navigator.canShare?.({ files: [file] })) {
+      try {
+        await navigator.share({ files: [file], title: 'Picture Word Books backup' });
+        setBackupMsg('Backup shared.');
+        return;
+      } catch (e) {
+        if ((e as Error).name === 'AbortError') {
+          setBackupMsg('');
+          return;
+        }
+      }
+    }
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = `picture-books-backup-${new Date().toISOString().slice(0, 10)}.json`;
+    a.download = name;
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 5000);
-    setBackupMsg('Backup saved.');
+    setBackupMsg('Backup saved to your downloads.');
   };
 
   const doImport = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -301,9 +316,9 @@ export function SettingsPage() {
 
       <section className="panel">
         <h2>Backup</h2>
-        <p>Books are stored only on this device. Save a backup file to keep them safe or move them to another device.</p>
+        <p>Books are stored only on this device. Share a backup file to keep them safe, or send it to a teacher or another device — they tap Restore backup to add your books, with all their pictures.</p>
         <div className="row wrap">
-          <button type="button" className="btn" onClick={doExport}>⬇️ Save backup</button>
+          <button type="button" className="btn" onClick={doExport}>📤 Share backup</button>
           <button type="button" className="btn" onClick={() => importInput.current?.click()}>⬆️ Restore backup</button>
           <input ref={importInput} type="file" accept="application/json,.json" hidden onChange={doImport} />
         </div>
