@@ -1,5 +1,6 @@
 import bookdash from './bookdash.json';
-import peter from './peter-rabbit.json';
+import brooke from './brooke-pictures.json';
+import classics from './classics.json';
 import { WRITTEN } from './written';
 
 export type Category = 'first' | 'story' | 'social' | 'rhyme';
@@ -38,22 +39,31 @@ export const LEVELS = { 1: 'Easy', 2: 'Short sentences', 3: 'Longer story' } as 
 const words = (b: { pages: CollectionPage[] }) => b.pages.map((p) => p.text).join(' ').split(/\s+/).filter(Boolean).length;
 
 export const COLLECTION: CollectionBook[] = [
-  ...WRITTEN.map((w) => ({
-    id: w.id,
-    title: w.title,
-    description: w.description,
-    category: w.kind,
-    level: w.level,
-    credit: w.credit,
-    hints: w.hints,
-    pages: w.text.split(/\n\s*\n/).map((t) => ({ text: t.trim() })),
-  })),
+  ...WRITTEN.map((w) => {
+    // Some retellings use the original pictures by L. Leslie Brooke (public domain).
+    const pictures = (brooke as Record<string, (string | null)[]>)[w.id.replace(/^w-/, '')];
+    return {
+      id: w.id,
+      title: w.title,
+      description: w.description,
+      category: w.kind,
+      level: w.level,
+      credit: pictures ? `${w.credit} Pictures by L. Leslie Brooke (1904), public domain, from Project Gutenberg.` : w.credit,
+      hints: w.hints,
+      cover: pictures?.find(Boolean) ?? undefined,
+      pages: w.text.split(/\n\s*\n/).map((t, i) => ({ text: t.trim(), image: pictures?.[i] ?? undefined })),
+    };
+  }),
   ...(bookdash as Omit<CollectionBook, 'category' | 'level'>[]).map((b) => ({
     ...b,
     category: 'story' as const,
     level: (words(b) <= 130 ? 2 : 3) as 2 | 3,
   })),
-  { ...(peter as Omit<CollectionBook, 'category' | 'level'>), category: 'story' as const, level: 3 as const },
+  ...(classics as (Omit<CollectionBook, 'category' | 'level'> & { category?: Category; level?: 1 | 2 | 3 })[]).map((b) => ({
+    ...b,
+    category: b.category ?? ('story' as const),
+    level: b.level ?? (3 as const),
+  })),
 ];
 
 export const collectionBook = (id: string) => COLLECTION.find((b) => b.id === id);

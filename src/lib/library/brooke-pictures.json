@@ -1,0 +1,22 @@
+{
+ "three-little-pigs": [
+  "library/classic/brooke-three-little-pigs/01.jpg",
+  "library/classic/brooke-three-little-pigs/02.jpg",
+  null,
+  "library/classic/brooke-three-little-pigs/04.jpg",
+  "library/classic/brooke-three-little-pigs/05.jpg",
+  "library/classic/brooke-three-little-pigs/06.jpg",
+  "library/classic/brooke-three-little-pigs/07.jpg",
+  "library/classic/brooke-three-little-pigs/08.jpg"
+ ],
+ "goldilocks": [
+  "library/classic/brooke-goldilocks/01.jpg",
+  null,
+  "library/classic/brooke-goldilocks/03.jpg",
+  null,
+  "library/classic/brooke-goldilocks/05.jpg",
+  "library/classic/brooke-goldilocks/06.jpg",
+  "library/classic/brooke-goldilocks/07.jpg",
+  "library/classic/brooke-goldilocks/08.jpg"
+ ]
+}
