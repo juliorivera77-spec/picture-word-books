@@ -59,6 +59,8 @@ export interface Page {
 export interface Book {
   id: string;
   title: string;
+  /** Set for books added from the built-in collection. */
+  source?: { id: string; credit: string; url?: string };
   createdAt: number;
   updatedAt: number;
   pages: Page[];

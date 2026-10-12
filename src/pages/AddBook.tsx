@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { aiReady, readPagePhoto } from '../lib/ai';
+import { aiReady, readPagePhoto, writeStory, type StoryRequest } from '../lib/ai';
 import { createBook, generateMissing } from '../lib/books';
 import { uid } from '../lib/db';
 import { readImageText } from '../lib/importers/ocr';
@@ -9,13 +9,15 @@ import { useOnline, useSettings } from '../lib/settings';
 import { splitPages } from '../lib/text';
 import type { DraftPage } from '../lib/types';
 
-type Mode = 'type' | 'photo' | 'file';
+type Mode = 'type' | 'photo' | 'file' | 'ai';
 
 export function AddBook() {
   const { settings } = useSettings();
   const online = useOnline();
   const nav = useNavigate();
-  const [mode, setMode] = useState<Mode>('photo');
+  const [mode, setMode] = useState<Mode>('type');
+  const [story, setStory] = useState<StoryRequest>({ topic: '', childName: '', kind: 'fun', level: 2, pages: 6, include: '' });
+  const [writing, setWriting] = useState(false);
   const [title, setTitle] = useState('');
   const [pasted, setPasted] = useState('');
   const [drafts, setDrafts] = useState<DraftPage[]>([]);
@@ -132,13 +134,34 @@ export function AddBook() {
     }
   };
 
+  const write = async () => {
+    setError('');
+    setWriting(true);
+    try {
+      const out = await writeStory(story, settings);
+      setTitle(out.title);
+      setDrafts(out.pages.map((text) => ({ id: uid(), text })));
+    } catch (e) {
+      setError((e as Error).message);
+    } finally {
+      setWriting(false);
+    }
+  };
+  const canWrite = settings.aiEnabled && !!settings.aiKey;
+
   return (
     <div className="page">
       <header className="topbar">
         <Link to="/" className="icon-btn" aria-label="Back">←</Link>
-        <h1>New book</h1>
+        <h1>Make a book</h1>
         <span />
       </header>
+
+      <ol className="steps">
+        <li>Choose how to add the words.</li>
+        <li>Check the words, then tap <strong>Make picture book</strong>.</li>
+        <li>If some words have no picture, tap <strong>🧩 Fill in the blanks</strong> in the book.</li>
+      </ol>
 
       <label className="field">
         <span>Book title</span>
@@ -148,9 +171,10 @@ export function AddBook() {
       <div className="tabs" role="tablist">
         {(
           [
+            ['type', '✍️ Type or dictate'],
             ['photo', '📷 Photos of pages'],
-            ['type', '✍️ Type or paste'],
             ['file', '📄 Upload a file'],
+            ['ai', '✨ Write a story'],
           ] as [Mode, string][]
         ).map(([m, label]) => (
           <button key={m} role="tab" aria-selected={mode === m} className={`tab ${mode === m ? 'on' : ''}`} onClick={() => setMode(m)}>
@@ -178,11 +202,67 @@ export function AddBook() {
 
       {mode === 'type' && (
         <div className="panel">
-          <p>Type or paste the story. Leave an empty line between pages.</p>
+          <p>
+            Type or paste the story — or tap the <strong>🎤</strong> on your keyboard and read it aloud. Press <strong>return twice</strong> to
+            start a new page.
+          </p>
           {drafts.length === 0 ? (
             <textarea rows={10} value={pasted} onChange={(e) => setPasted(e.target.value)} placeholder={'The cat sat on the mat.\n\nThe dog ran to the park.'} />
           ) : (
             <p className="hint">You already have pages below; edit them there.</p>
+          )}
+        </div>
+      )}
+
+      {mode === 'ai' && (
+        <div className="panel">
+          <p>Describe a story and AI writes it in simple words that are easy to show as pictures. You can change the words before making the book.</p>
+          {!canWrite ? (
+            <p className="notice">
+              This needs the AI helper and your own OpenAI key (about 1¢ per story). Turn it on in <Link to="/settings">Settings → AI helper</Link>.
+            </p>
+          ) : (
+            <>
+              <label className="field">
+                <span>What is the story about?</span>
+                <textarea rows={2} value={story.topic} onChange={(e) => setStory({ ...story, topic: e.target.value })} placeholder="e.g. going to the dentist · a dog who loves trains · the first day at a new school" />
+              </label>
+              <div className="row wrap">
+                <label className="field grow">
+                  <span>Child’s name (optional)</span>
+                  <input value={story.childName} onChange={(e) => setStory({ ...story, childName: e.target.value })} placeholder="e.g. Leo" />
+                </label>
+                <label className="field grow">
+                  <span>Kind of story</span>
+                  <select value={story.kind} onChange={(e) => setStory({ ...story, kind: e.target.value as StoryRequest['kind'] })}>
+                    <option value="fun">Fun story</option>
+                    <option value="social">Social story (what to expect)</option>
+                  </select>
+                </label>
+              </div>
+              <div className="row wrap">
+                <label className="field grow">
+                  <span>Reading level</span>
+                  <select value={story.level} onChange={(e) => setStory({ ...story, level: Number(e.target.value) as StoryRequest['level'] })}>
+                    <option value={1}>Easy — a few words a page</option>
+                    <option value={2}>Short sentences</option>
+                    <option value={3}>Longer story</option>
+                  </select>
+                </label>
+                <label className="field grow">
+                  <span>Pages: {story.pages}</span>
+                  <input type="range" min={3} max={12} value={story.pages} onChange={(e) => setStory({ ...story, pages: Number(e.target.value) })} />
+                </label>
+              </div>
+              <label className="field">
+                <span>Things to include (optional)</span>
+                <input value={story.include} onChange={(e) => setStory({ ...story, include: e.target.value })} placeholder="e.g. his dog Max, the color blue, trains" />
+              </label>
+              <button type="button" className="btn primary big-btn" disabled={!story.topic.trim() || writing || !online} onClick={write}>
+                {writing ? 'Writing the story…' : drafts.length ? '✨ Write a new version' : '✨ Write the story'}
+              </button>
+              {!online && <p className="hint">Needs an internet connection.</p>}
+            </>
           )}
         </div>
       )}

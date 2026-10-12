@@ -1,6 +1,7 @@
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import { SettingsProvider } from './lib/settings';
 import { AddBook } from './pages/AddBook';
+import { CollectionBookPage } from './pages/CollectionBookPage';
 import { Library } from './pages/Library';
 import { Reader } from './pages/Reader';
 import { SettingsPage } from './pages/SettingsPage';
@@ -13,6 +14,7 @@ export function App() {
           <Route path="/" element={<Library />} />
           <Route path="/new" element={<AddBook />} />
           <Route path="/book/:id" element={<Reader />} />
+          <Route path="/collection/:id" element={<CollectionBookPage />} />
           <Route path="/settings" element={<SettingsPage />} />
         </Routes>
       </HashRouter>

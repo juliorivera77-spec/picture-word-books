@@ -54,6 +54,8 @@ export function Reader() {
   useEffect(() => {
     getBook(id!).then((b) => {
       setBook(b ?? null);
+      // Collection books show their illustrations above the words.
+      if (b?.source) setShowScan(true);
       const saved = Number(localStorage.getItem(`pwb-pos-${id}`) ?? 0);
       if (b && saved < b.pages.length) setPageNo(saved);
     });
@@ -325,8 +327,9 @@ export function Reader() {
           if (Math.abs(dx) > 70) go(pageNo + (dx < 0 ? 1 : -1));
         }}
       >
-        {showScan && scanUrl && <img className="scan" src={scanUrl} alt="original page" />}
+        {(showScan || !page.tokens.length) && scanUrl && <img className="scan" src={scanUrl} alt="page illustration" />}
         <PageCards groups={groups} settings={settings} active={active} editing={editing} onTap={tapCard} />
+        {book.source && (pageNo === 0 || pageNo === book.pages.length - 1) && <p className="credit center">{book.source.credit}</p>}
       </main>
 
       <footer className="pager no-print">

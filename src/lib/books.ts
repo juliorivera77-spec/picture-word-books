@@ -1,5 +1,6 @@
 import { aiReady, generatePicture, readSentences } from './ai';
-import { putImage, saveBook, setWordPref, uid } from './db';
+import { listBooks, putImage, saveBook, setWordPref, uid } from './db';
+import { applyHints, type CollectionBook } from './library';
 import { shrinkImage } from './images';
 import { matchTokens, type MatchResult } from './symbols/resolver';
 import { tokenize } from './text';
@@ -117,4 +118,53 @@ export async function generateMissing(book: Book, settings: Settings, onStatus: 
   await saveBook(book);
   onStatus('');
   return errors;
+}
+
+/** The user's copy of a collection book, if they already added it. */
+export async function findCollectionCopy(id: string): Promise<Book | undefined> {
+  return (await listBooks()).find((b) => b.source?.id === id);
+}
+
+/**
+ * Add a book from the built-in collection to "My books": save its illustrations on the device
+ * (so it works offline) and find a picture for every word.
+ */
+export async function addFromCollection(cb: CollectionBook, settings: Settings, onStatus: (s: string) => void): Promise<Book> {
+  const existing = await findCollectionCopy(cb.id);
+  if (existing) return existing;
+  const book: Book = {
+    id: uid(),
+    title: cb.title,
+    createdAt: Date.now(),
+    updatedAt: Date.now(),
+    pages: [],
+    source: { id: cb.id, credit: cb.credit, url: cb.url },
+  };
+  let n = 0;
+  for (const p of cb.pages) {
+    onStatus(`Getting the book ready… page ${++n} of ${cb.pages.length}`);
+    let imageId: string | undefined;
+    if (p.image) {
+      try {
+        const res = await fetch(`${import.meta.env.BASE_URL}${p.image}`);
+        if (res.ok) {
+          imageId = `s:${uid()}`;
+          await putImage(imageId, await res.blob(), 'scan');
+        }
+      } catch {
+        /* offline: the page works without its illustration */
+      }
+    }
+    const tokens = tokenize(p.text.trim());
+    applyHints(tokens, cb.hints);
+    book.pages.push({ id: uid(), text: p.text.trim(), tokens, imageId });
+  }
+  onStatus('Finding pictures…');
+  await matchTokens(
+    book.pages.map((p) => p.tokens),
+    settings,
+    (done, total) => onStatus(`Finding pictures… ${Math.round((100 * done) / Math.max(1, total))}%`),
+  );
+  await saveBook(book);
+  return book;
 }

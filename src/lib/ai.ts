@@ -205,3 +205,53 @@ export async function testConnection(settings: Settings): Promise<string> {
   const text = TEXT_MODELS.filter((m) => ids.includes(m));
   return `Key works. Drawing models: ${image.join(', ') || 'none found'}. Reading models: ${text.join(', ') || 'none found'}.`;
 }
+
+// ---------- writing a new story ----------
+
+export interface StoryRequest {
+  topic: string;
+  childName?: string;
+  kind: 'fun' | 'social';
+  /** 1 = first words, 2 = short sentences, 3 = longer story */
+  level: 1 | 2 | 3;
+  pages: number;
+  include?: string;
+}
+
+const LEVEL_RULES = {
+  1: 'Each page has ONE very short sentence of 2 to 5 words (e.g. "The dog runs."). Use only the most common, concrete words.',
+  2: 'Each page has 1 or 2 short sentences, up to about 10 words each. Use common, concrete everyday words.',
+  3: 'Each page has 2 or 3 sentences, up to about 15 words each. Keep the words simple and concrete.',
+};
+
+const STORY_PROMPT = `You write short, age-appropriate books for young children, including autistic children who read with picture symbols (one picture above every word).
+Write so every word is easy to show as a picture:
+- Use simple, concrete, literal words (things, people, animals, actions, feelings). Avoid idioms, sarcasm, metaphors and figures of speech.
+- Use the same words for the same things every time. Repeating a sentence pattern is good.
+- Use the present tense.
+- Keep it warm, positive and safe: nothing scary, violent, rude or sad without a happy ending. No brand names.
+- Write numbers as words. Do not use emoji.
+Return JSON: {"title":"...","pages":["page 1 text","page 2 text", ...]}`;
+
+const SOCIAL_RULES = `This is a SOCIAL STORY (Carol Gray style) that helps a child understand and prepare for a situation:
+- Write in the first person ("I"), present tense, calm and reassuring.
+- Mostly describe what happens, in order, and what people do and feel. Add a few gentle sentences about what I can do ("I can…"), never "I must" or "I will not".
+- Mention sensations that may feel different (sounds, waiting, touch) and a simple way to cope (ask for a break, take a deep breath, hold a toy).
+- End with a positive sentence.`;
+
+/** Ask the AI to write a new picture-friendly book. Needs the AI helper turned on, with an OpenAI key. */
+export async function writeStory(req: StoryRequest, settings: Settings): Promise<{ title: string; pages: string[] }> {
+  const n = Math.max(3, Math.min(16, Math.round(req.pages)));
+  const ask =
+    `Write a ${req.kind === 'social' ? 'social story' : 'fun story'} about: ${req.topic.trim()}.\n` +
+    (req.childName?.trim() ? `The main character is a child called ${req.childName.trim()}${req.kind === 'social' ? ' (still write in the first person "I")' : ''}.\n` : '') +
+    (req.include?.trim() ? `Please include: ${req.include.trim()}.\n` : '') +
+    `Exactly ${n} pages. ${LEVEL_RULES[req.level]}`;
+  const out = await chatJson(settings, [
+    { role: 'system', content: STORY_PROMPT + (req.kind === 'social' ? '\n\n' + SOCIAL_RULES : '') },
+    { role: 'user', content: ask },
+  ]);
+  const pages: string[] = (Array.isArray(out?.pages) ? out.pages : []).map((p: unknown) => String(p).trim()).filter(Boolean);
+  if (!pages.length) throw new Error('The AI did not write a story. Please try again.');
+  return { title: String(out?.title ?? req.topic).trim() || 'My story', pages };
+}
