@@ -1,0 +1,1427 @@
+[
+ {
+  "id": "bookdash-come-back-cat",
+  "title": "Come Back, Cat!",
+  "description": "A delightful tale about an independent cat.",
+  "credit": "Come Back, Cat! by Nicola Rijsdijk, Karen Lilje, Sam Scarborough. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/come-back-cat/cover.jpg",
+  "pages": [
+   {
+    "text": "Come back, cat! Play with me.",
+    "image": "library/bookdash/come-back-cat/01.jpg"
+   },
+   {
+    "text": "Sit in your basket. Stay right here!",
+    "image": "library/bookdash/come-back-cat/02.jpg"
+   },
+   {
+    "text": "Come back, cat! That’s way too high.",
+    "image": "library/bookdash/come-back-cat/03.jpg"
+   },
+   {
+    "text": "Come back, cat! Don’t go outside.",
+    "image": "library/bookdash/come-back-cat/04.jpg"
+   },
+   {
+    "text": "",
+    "image": "library/bookdash/come-back-cat/05.jpg"
+   },
+   {
+    "text": "Come back, cat! That’s not yours.",
+    "image": "library/bookdash/come-back-cat/06.jpg"
+   },
+   {
+    "text": "Come back, cat! What have you got?",
+    "image": "library/bookdash/come-back-cat/07.jpg"
+   },
+   {
+    "text": "Come back, cat.\nThat’s not your friend!",
+    "image": "library/bookdash/come-back-cat/08.jpg"
+   },
+   {
+    "text": "Hello, cat! Are you back?",
+    "image": "library/bookdash/come-back-cat/09.jpg"
+   },
+   {
+    "text": "Stay in your basket. It’s nap time now.",
+    "image": "library/bookdash/come-back-cat/10.jpg"
+   },
+   {
+    "text": "Cat?",
+    "image": "library/bookdash/come-back-cat/11.jpg"
+   },
+   {
+    "text": "",
+    "image": "library/bookdash/come-back-cat/12.jpg"
+   }
+  ]
+ },
+ {
+  "id": "bookdash-sbus-special-shoes",
+  "title": "Sbu's Special Shoes",
+  "description": "Sbu’s little brother finds Sbu’s favourite shoes. When he tries them on, he discovers something very special about them.",
+  "credit": "Sbu's Special Shoes by Mark Hardie, Eidin Griffin, Megan Pirie. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/sbus-special-shoes/cover.jpg",
+  "pages": [
+   {
+    "text": "These are my big brother Sbu’s shoes.",
+    "image": "library/bookdash/sbus-special-shoes/01.jpg"
+   },
+   {
+    "text": "Look what I can do in them.",
+    "image": "library/bookdash/sbus-special-shoes/02.jpg"
+   },
+   {
+    "text": "I can race cars!",
+    "image": "library/bookdash/sbus-special-shoes/03.jpg"
+   },
+   {
+    "text": "Sometimes, I even race our bouncy dog.",
+    "image": "library/bookdash/sbus-special-shoes/04.jpg"
+   },
+   {
+    "text": "With Sbu’s shoes I win every time.",
+    "image": "library/bookdash/sbus-special-shoes/05.jpg"
+   },
+   {
+    "text": "Wait!\nLet me show you one more thing.",
+    "image": "library/bookdash/sbus-special-shoes/06.jpg"
+   },
+   {
+    "text": "Watch me dance and spin.",
+    "image": "library/bookdash/sbus-special-shoes/07.jpg"
+   },
+   {
+    "text": "I can cartwheel over and over.",
+    "image": "library/bookdash/sbus-special-shoes/08.jpg"
+   },
+   {
+    "text": "I’m a monkey! Look at me hang upside down.",
+    "image": "library/bookdash/sbus-special-shoes/09.jpg"
+   },
+   {
+    "text": "Watch me jump and catch the moon.",
+    "image": "library/bookdash/sbus-special-shoes/10.jpg"
+   },
+   {
+    "text": "Here, try them on!",
+    "image": "library/bookdash/sbus-special-shoes/11.jpg"
+   },
+   {
+    "text": "See what you can do in Sbu’s special shoes.",
+    "image": "library/bookdash/sbus-special-shoes/12.jpg"
+   }
+  ]
+ },
+ {
+  "id": "bookdash-what-is-it",
+  "title": "What is it?",
+  "description": "What is it? It isn’t like me. Do you think it’s dangerous?",
+  "credit": "What is it? by Kate Sidley, Robyn Penn, Ann Roberts. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/what-is-it/cover.jpg",
+  "pages": [
+   {
+    "text": "What is it?"
+   },
+   {
+    "text": "What is it? It hasn't got a trunk. It's not like me."
+   },
+   {
+    "text": "What is it? It hasn’t got a tail. It’s not like me."
+   },
+   {
+    "text": "What is it? Ugh! Where are its feathers? It’s not like me."
+   },
+   {
+    "text": "What is it? Look at those tiny feet. It’s not like us."
+   },
+   {
+    "text": "Do you think it’s dangerous?"
+   },
+   {
+    "text": "Do you think it wants to eat us?"
+   },
+   {
+    "text": "Achoo! Achoo!"
+   },
+   {
+    "text": "Aargh! Eek! Run!"
+   },
+   {
+    "text": "It's chasing us!"
+   },
+   {
+    "text": "Be careful. Come back."
+   },
+   {
+    "text": "What is it?\nIt's a baby, just like me!"
+   }
+  ]
+ },
+ {
+  "id": "bookdash-shongololos-shoes",
+  "title": "Shongololo's Shoes",
+  "description": "Shongololo has lost his shoes, and the other animals are NOT being very helpful. Will he ever find them?",
+  "credit": "Shongololo's Shoes by Marteli Kleyn, Megan Lotter, Jacqui L'Ange. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/shongololos-shoes/cover.jpg",
+  "pages": [
+   {
+    "text": "Where are all my shoes?\nI know I left them here!"
+   },
+   {
+    "text": "I haven’t seen your shoes.\nGo ask Snail!"
+   },
+   {
+    "text": "No shoes here.\nGo ask Giraffe."
+   },
+   {
+    "text": "I’m in a hurry – go ask Frog."
+   },
+   {
+    "text": "Shoes? How many?\nGo ask Flamingo."
+   },
+   {
+    "text": "Seen your shoes?\nNo, not me."
+   },
+   {
+    "text": "Will I ever find my shoes?"
+   },
+   {
+    "text": "Shoes, eh? You should ask the Monkeys"
+   },
+   {
+    "text": "We’re busy. Go ask Owl, she knows everything!\nHello hello?"
+   },
+   {
+    "text": "Hmm. I have an idea. Why don’t you ask Lion?"
+   },
+   {
+    "text": "These are yours? I’ll give them all back if you come to my party!"
+   }
+  ]
+ },
+ {
+  "id": "bookdash-a-house-for-mouse",
+  "title": "A House for Mouse",
+  "description": "Mouse is looking for a new house. Friendly animals offer to share their homes with him. But nothing is right until he finds his own little spot, warm and cosy.",
+  "credit": "A House for Mouse by Michele Fry, Amy Uzzell, Jennifer Jacobs. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/a-house-for-mouse/cover.jpg",
+  "pages": [
+   {
+    "text": "Mouse was looking for a new house.",
+    "image": "library/bookdash/a-house-for-mouse/01.jpg"
+   },
+   {
+    "text": "This looks like a nice house.",
+    "image": "library/bookdash/a-house-for-mouse/02.jpg"
+   },
+   {
+    "text": "“You can come and sleep with me,” said Puppy.\n“Thank you,” said Mouse.",
+    "image": "library/bookdash/a-house-for-mouse/03.jpg"
+   },
+   {
+    "text": "That night, Mouse’s dreams were bouncy and muddy.",
+    "image": "library/bookdash/a-house-for-mouse/04.jpg"
+   },
+   {
+    "text": "“You can come and sleep with me,” said Parrot.\n“Thank you,” said Mouse.",
+    "image": "library/bookdash/a-house-for-mouse/05.jpg"
+   },
+   {
+    "text": "That night, Mouse’s dreams were noisy and wild.",
+    "image": "library/bookdash/a-house-for-mouse/06.jpg"
+   },
+   {
+    "text": "“You can come and sleep with me,” said Fish.\n“Thank you,” said Mouse.",
+    "image": "library/bookdash/a-house-for-mouse/07.jpg"
+   },
+   {
+    "text": "That night, Mouse’s dreams were cold and wet.",
+    "image": "library/bookdash/a-house-for-mouse/08.jpg"
+   },
+   {
+    "text": "Mouse needed somewhere warm and dry.",
+    "image": "library/bookdash/a-house-for-mouse/09.jpg"
+   },
+   {
+    "text": "",
+    "image": "library/bookdash/a-house-for-mouse/10.jpg"
+   },
+   {
+    "text": "Mouse found a bookshelf nearby.",
+    "image": "library/bookdash/a-house-for-mouse/11.jpg"
+   },
+   {
+    "text": "That night, Mouse had warm and cosy dreams.",
+    "image": "library/bookdash/a-house-for-mouse/12.jpg"
+   }
+  ]
+ },
+ {
+  "id": "bookdash-who-is-our-friend",
+  "title": "Who is our friend?",
+  "description": "Rhino, Crocodile, Giraffe and Zebra all have an unlikely friend. Can you guess who he is?",
+  "credit": "Who is our friend? by Gerhard Van Wyk, Jade Mathieson, Lara de Groot. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/who-is-our-friend/cover.jpg",
+  "pages": [
+   {
+    "text": "Can you guess who our best friend is?\n**He’s not like us at all.**"
+   },
+   {
+    "text": "Our best friend is **Bird!**"
+   },
+   {
+    "text": "I am Rhino.\n**I get covered in fleas.**"
+   },
+   {
+    "text": "Bird eats them all up."
+   },
+   {
+    "text": "I am Crocodile.\n**I can’t brush my teeth.**"
+   },
+   {
+    "text": "Bird pecks them all clean."
+   },
+   {
+    "text": "I am Giraffe.\n**I can’t scratch my head.**"
+   },
+   {
+    "text": "Bird can reach just the right spot."
+   },
+   {
+    "text": "I am Zebra.\n**I can’t see things far away.**"
+   },
+   {
+    "text": "Bird has great eyes,\n**so when he’s watching I’m safe.**"
+   },
+   {
+    "text": "Bird might be different, but that’s no problem..."
+   },
+   {
+    "text": "We don’t even mind when he sings!"
+   },
+   {
+    "text": "Will you be my friend?"
+   }
+  ]
+ },
+ {
+  "id": "bookdash-is-there-anyone-like-me",
+  "title": "Is There Anyone Like Me?",
+  "description": "I wonder if there’s another me somewhere in the world…",
+  "credit": "Is There Anyone Like Me? by Fred Strydom, Jess Jardim-Wedepohl, Stephen Wallace. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/is-there-anyone-like-me/cover.jpg",
+  "pages": [
+   {
+    "text": "I wonder if there’s another me somewhere in the world.",
+    "image": "library/bookdash/is-there-anyone-like-me/01.jpg"
+   },
+   {
+    "text": "Who looks the same.\nAnd talks the same.",
+    "image": "library/bookdash/is-there-anyone-like-me/02.jpg"
+   },
+   {
+    "text": "And even has my curls.",
+    "image": "library/bookdash/is-there-anyone-like-me/03.jpg"
+   },
+   {
+    "text": "Someone with my eyes my ears.\nWho even has my laugh.",
+    "image": "library/bookdash/is-there-anyone-like-me/04.jpg"
+   },
+   {
+    "text": "Who can do what I can do ...",
+    "image": "library/bookdash/is-there-anyone-like-me/05.jpg"
+   },
+   {
+    "text": "... and can’t do what I can’t.",
+    "image": "library/bookdash/is-there-anyone-like-me/06.jpg"
+   },
+   {
+    "text": "I’ve looked and looked everywhere to find another me.\nI went down to the park and looked behind the trees.",
+    "image": "library/bookdash/is-there-anyone-like-me/07.jpg"
+   },
+   {
+    "text": "I looked around, up and down ...",
+    "image": "library/bookdash/is-there-anyone-like-me/08.jpg"
+   },
+   {
+    "text": "... at every single face.",
+    "image": "library/bookdash/is-there-anyone-like-me/09.jpg"
+   },
+   {
+    "text": "I couldn’t find another me in any single place.",
+    "image": "library/bookdash/is-there-anyone-like-me/10.jpg"
+   },
+   {
+    "text": "There’s only one me in the world!\nI’m special, oh it’s true!",
+    "image": "library/bookdash/is-there-anyone-like-me/11.jpg"
+   },
+   {
+    "text": "But not just me, don’t you see?\nThere’s only one of you!",
+    "image": "library/bookdash/is-there-anyone-like-me/12.jpg"
+   }
+  ]
+ },
+ {
+  "id": "bookdash-i-will-help-you",
+  "title": "I Will Help You",
+  "description": "When Mama Heron needs help, Lungile comes to her rescue.",
+  "credit": "I Will Help You by Fathima Kathrada, Olivia Villet, Andrea Abbott. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/i-will-help-you/cover.jpg",
+  "pages": [
+   {
+    "text": "“Ouch!” Mama Heron hurts her wing and leg on barbed wire.",
+    "image": "library/bookdash/i-will-help-you/01.jpg"
+   },
+   {
+    "text": "“I am hurt. I can’t get home to my children.”\n“Please help me.”",
+    "image": "library/bookdash/i-will-help-you/02.jpg"
+   },
+   {
+    "text": "“Why are you crying Mama Heron?”\n“I can’t get home to my children.”",
+    "image": "library/bookdash/i-will-help-you/03.jpg"
+   },
+   {
+    "text": "“I will help you,” says Lungile.",
+    "image": "library/bookdash/i-will-help-you/04.jpg"
+   },
+   {
+    "text": "“Thank you, Lungile!”",
+    "image": "library/bookdash/i-will-help-you/05.jpg"
+   },
+   {
+    "text": "The next day, Gogo sends Lungile to the shop to buy bread.\nOn the way, he stops to play with his friends in the river.",
+    "image": "library/bookdash/i-will-help-you/06.jpg"
+   },
+   {
+    "text": "Eish! The money is gone.",
+    "image": "library/bookdash/i-will-help-you/07.jpg"
+   },
+   {
+    "text": "“Don’t come home until you find that money!”",
+    "image": "library/bookdash/i-will-help-you/08.jpg"
+   },
+   {
+    "text": "“Why are you crying, Lungile?”",
+    "image": "library/bookdash/i-will-help-you/09.jpg"
+   },
+   {
+    "text": "“I lost the money Gogo gave me to buy bread. We have no supper now.”\n“I will help you.”",
+    "image": "library/bookdash/i-will-help-you/10.jpg"
+   },
+   {
+    "text": "Mama Heron’s sharp eyes see the coins shining in the water.",
+    "image": "library/bookdash/i-will-help-you/11.jpg"
+   },
+   {
+    "text": "“Thank you, Mama Heron.”",
+    "image": "library/bookdash/i-will-help-you/12.jpg"
+   }
+  ]
+ },
+ {
+  "id": "bookdash-little-sock",
+  "title": "Little Sock and the Tiny Creatures",
+  "description": "It’s wash day for the Socks, but where has Little Sock gone?",
+  "credit": "Little Sock and the Tiny Creatures by Lili Probart, Jon Keevy, Chani Coetzee. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/little-sock/cover.jpg",
+  "pages": [
+   {
+    "text": "It’s wash day for the Socks."
+   },
+   {
+    "text": "OH NO! Little Sock falls out!\n“I have to get home,” says Little Sock."
+   },
+   {
+    "text": "“Do you know the way home?” asks Little Sock."
+   },
+   {
+    "text": "“No, but take this,” says the Robot."
+   },
+   {
+    "text": "“Do you know the way home?” asks Little Sock."
+   },
+   {
+    "text": "“No, but take this,” says the Mouse."
+   },
+   {
+    "text": "“Do you know the way home?” asks Little Sock."
+   },
+   {
+    "text": "\"No, but take... OOPS!!!”"
+   },
+   {
+    "text": "“Maybe the marble knows the way home,” says Little Sock."
+   },
+   {
+    "text": "“It does!” says Little Sock."
+   },
+   {
+    "text": "Little Sock is happy."
+   },
+   {
+    "text": "Different socks have different personalities, so pick your favourite.\n**MAKE YOUR OWN LITTLE SOCK**\n**YOU WILL NEED:**\n• a sock\n• two buttons\n• a needle and thread\n• a grown-up to help\n**INSTRUCTIONS**\nAsk your grown-up to sew the buttons onto the sock."
+   }
+  ]
+ },
+ {
+  "id": "bookdash-a-beautiful-day",
+  "title": "A Beautiful Day",
+  "description": "It’s a beautiful day for a picnic. Everyone wants to join in the fun.",
+  "credit": "A Beautiful Day by Raeesah Vawda, Lindy Pelzl, Elana Bregin. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/a-beautiful-day/cover.jpg",
+  "pages": [
+   {
+    "text": "“What a beautiful day,” says Mom. “Wake up Nicholas.”\n“Hello sun,” says Nicholas. “Good morning birds.”",
+    "image": "library/bookdash/a-beautiful-day/01.jpg"
+   },
+   {
+    "text": "“It’s a lovely day,” says Dad. “Let’s have a picnic by the river.”\n“Can my friend Jacob come?” asks Nicholas.",
+    "image": "library/bookdash/a-beautiful-day/02.jpg"
+   },
+   {
+    "text": "“Don’t forget me. I love picnics!” says Donkey.\n“And me. I want to come too!” says Dog.\n“Follow us,” say the birds.",
+    "image": "library/bookdash/a-beautiful-day/03.jpg"
+   },
+   {
+    "text": "",
+    "image": "library/bookdash/a-beautiful-day/04.jpg"
+   },
+   {
+    "text": "“I’ll race you to that tree,” Nicholas says.",
+    "image": "library/bookdash/a-beautiful-day/05.jpg"
+   },
+   {
+    "text": "“I won, I won,” says Donkey.\n“Not fair,” says Nicholas. “You’ve got four legs.”",
+    "image": "library/bookdash/a-beautiful-day/06.jpg"
+   },
+   {
+    "text": "“Look what I can do,” says Nicholas.\n“I bet you can’t do this,” says Jacob.",
+    "image": "library/bookdash/a-beautiful-day/07.jpg"
+   },
+   {
+    "text": "“Here’s our picnic spot,” says Dad.",
+    "image": "library/bookdash/a-beautiful-day/08.jpg"
+   },
+   {
+    "text": "“Race you to the water!” says Jacob.",
+    "image": "library/bookdash/a-beautiful-day/09.jpg"
+   },
+   {
+    "text": "“Come and eat, boys and girls,” says Mom.",
+    "image": "library/bookdash/a-beautiful-day/10.jpg"
+   },
+   {
+    "text": "“Time to go home,” says Mom.“Say goodbye to Jacob.”",
+    "image": "library/bookdash/a-beautiful-day/11.jpg"
+   },
+   {
+    "text": "",
+    "image": "library/bookdash/a-beautiful-day/12.jpg"
+   }
+  ]
+ },
+ {
+  "id": "bookdash-rafikis-style",
+  "title": "Rafiki's Style",
+  "description": "Rafiki’s style is all his own, but when the Cool Cat Crew struts by, he starts to wonder if it’s good enough.",
+  "credit": "Rafiki's Style by Louis Greenberg, Audrey Anderson, Wesley Thompson. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/rafikis-style/cover.jpg",
+  "pages": [
+   {
+    "text": "On Sunday, Jimmy Zogba scored the winning goal.",
+    "image": "library/bookdash/rafikis-style/01.jpg"
+   },
+   {
+    "text": "On Monday, the Cool Cat Crew strutted by.",
+    "image": "library/bookdash/rafikis-style/02.jpg"
+   },
+   {
+    "text": "“Hey, Rafiki, where’s your zebra hair? Your hair’s so plain, like you don’t care.”",
+    "image": "library/bookdash/rafikis-style/03.jpg"
+   },
+   {
+    "text": "“Hey, Rafiki, where’s your fake tattoo? Your skin’s so boring. You are too.”",
+    "image": "library/bookdash/rafikis-style/04.jpg"
+   },
+   {
+    "text": "“Hey, Rafiki, where’s your bling? Your teeth are wonky, that’s the thing.”",
+    "image": "library/bookdash/rafikis-style/05.jpg"
+   },
+   {
+    "text": "That day, Rafiki walked home slowly.",
+    "image": "library/bookdash/rafikis-style/06.jpg"
+   },
+   {
+    "text": "“Auntie, can I have zebra hair?”\n“I can’t cut you zebra hair. Actually, I wouldn’t dare.”",
+    "image": "library/bookdash/rafikis-style/07.jpg"
+   },
+   {
+    "text": "“My skin’s so boring, Sisi. Can you make a fake tattoo?”\n“You don’t need one to look like you.”",
+    "image": "library/bookdash/rafikis-style/08.jpg"
+   },
+   {
+    "text": "“Mkhulu, I wish I had some bling.”“Bling, my child, don’t mean a thing.”",
+    "image": "library/bookdash/rafikis-style/09.jpg"
+   },
+   {
+    "text": "The next weekend, Santi Ramires scored the winning goal.",
+    "image": "library/bookdash/rafikis-style/10.jpg"
+   },
+   {
+    "text": "On Monday, the Cool Cat Crew strutted by.\n“Hey, Rafiki! Looking fine!”",
+    "image": "library/bookdash/rafikis-style/11.jpg"
+   },
+   {
+    "text": "Rafiki shrugged. “I look like me; this style is mine.”",
+    "image": "library/bookdash/rafikis-style/12.jpg"
+   }
+  ]
+ },
+ {
+  "id": "bookdash-whose-button-is-this",
+  "title": "Whose button is this?",
+  "description": "Tinny Tim sets out on an adventure to return a lost button. Along the way he goes exploring, has a miraculous escape, and makes new friends.",
+  "credit": "Whose button is this? by Paul Kennedy, James Woolley, Louise Gale. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/whose-button-is-this/cover.jpg",
+  "pages": [
+   {
+    "text": "Tinny Tim was sitting on the road when a button bounced his way.",
+    "image": "library/bookdash/whose-button-is-this/01.jpg"
+   },
+   {
+    "text": "“I wonder where this comes from,” he said.\nHe wanted to find out.",
+    "image": "library/bookdash/whose-button-is-this/02.jpg"
+   },
+   {
+    "text": "It was busy on the side of the road.\n“Woah!”\nHe nearly got squashed.",
+    "image": "library/bookdash/whose-button-is-this/03.jpg"
+   },
+   {
+    "text": "He made a lucky escape.\n“It’s scary out here,” he said.",
+    "image": "library/bookdash/whose-button-is-this/04.jpg"
+   },
+   {
+    "text": "“Hey there, is this yours?”",
+    "image": "library/bookdash/whose-button-is-this/05.jpg"
+   },
+   {
+    "text": "The green man said nothing. He just turned red.\n“What a rude person.”",
+    "image": "library/bookdash/whose-button-is-this/06.jpg"
+   },
+   {
+    "text": "Tinny Tim carried on looking.\n“Whose button is this?”",
+    "image": "library/bookdash/whose-button-is-this/07.jpg"
+   },
+   {
+    "text": "“Woah..!\n...at least he’s friendly.”",
+    "image": "library/bookdash/whose-button-is-this/08.jpg"
+   },
+   {
+    "text": "“I’ve got to get to the other side.\nI’m sure that’s where this comes from.”",
+    "image": "library/bookdash/whose-button-is-this/09.jpg"
+   },
+   {
+    "text": "SPLASH!\n“That was close.”\nHe waited for the cars to pass before he carried on.",
+    "image": "library/bookdash/whose-button-is-this/10.jpg"
+   },
+   {
+    "text": "Maybe this was who he was looking for.\n“Hello, who are you?”",
+    "image": "library/bookdash/whose-button-is-this/11.jpg"
+   },
+   {
+    "text": "“I’m Ruby Rags.” “I think this is yours,”he said.",
+    "image": "library/bookdash/whose-button-is-this/12.jpg"
+   },
+   {
+    "text": "“Thank you, little robot. Can we be friends?”",
+    "image": "library/bookdash/whose-button-is-this/13.jpg"
+   }
+  ]
+ },
+ {
+  "id": "bookdash-what-if",
+  "title": "What if",
+  "description": "Nandi is wondering all sorts of strange things about the world. And it begins with a simple question: What if…?",
+  "credit": "What if by Julie Ann Smith-Belton, MaryAn Hampton, Cristy Zinn. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/what-if/cover.jpg",
+  "pages": [
+   {
+    "text": "Nandi sat on the blue steps of her house.",
+    "image": "library/bookdash/what-if/01.jpg"
+   },
+   {
+    "text": "She was wondering...",
+    "image": "library/bookdash/what-if/02.jpg"
+   },
+   {
+    "text": "What if jelly beans made you jump really high?\nYou could get to school in one big leap!",
+    "image": "library/bookdash/what-if/03.jpg"
+   },
+   {
+    "text": "What if goats and chickens could talk?\nWould they tell good jokes?",
+    "image": "library/bookdash/what-if/04.jpg"
+   },
+   {
+    "text": "What if houses were rocket ships?\nYour family could go on holidays to the moon!",
+    "image": "library/bookdash/what-if/05.jpg"
+   },
+   {
+    "text": "What if no one had to cook? What if supper just arrived on the table?\n(And it was always your favourite.)",
+    "image": "library/bookdash/what-if/06.jpg"
+   },
+   {
+    "text": "What if ice-lollies never melted?\nThey could last all summer.",
+    "image": "library/bookdash/what-if/07.jpg"
+   },
+   {
+    "text": "What if the pictures in books flew around your head when Dad read to you?",
+    "image": "library/bookdash/what-if/08.jpg"
+   },
+   {
+    "text": "What if my pink gumboots were magical?\nI could run faster than my big brother!",
+    "image": "library/bookdash/what-if/09.jpg"
+   },
+   {
+    "text": "What if you squeezed your eyes shut and...",
+    "image": "library/bookdash/what-if/10.jpg"
+   },
+   {
+    "text": "“Nandi, what are you doing?” asked Nandi’s big brother.\nNandi sat back on the step with a big smile on her face.",
+    "image": "library/bookdash/what-if/11.jpg"
+   },
+   {
+    "text": "“Just wondering,” she said.",
+    "image": "library/bookdash/what-if/12.jpg"
+   }
+  ]
+ },
+ {
+  "id": "bookdash-when-i-grow-up",
+  "title": "When I Grow Up",
+  "description": "I don’t know what I want to be when I grow up. Can you help me choose?",
+  "credit": "When I Grow Up by Simóne van der Spuy, Michele Fry, Jennifer Jacobs. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/when-i-grow-up/cover.jpg",
+  "pages": [
+   {
+    "text": "What do I want to be when I grow up?"
+   },
+   {
+    "text": "When I grow up, I want to be a dancer and dance on a stage."
+   },
+   {
+    "text": "When I grow up, I want to be a firefighter and put out big fires."
+   },
+   {
+    "text": "When I grow up, I want to be a nurse and make sick people better."
+   },
+   {
+    "text": "When I grow up, I want to be a musician and play in a band."
+   },
+   {
+    "text": "When I grow up, I want to be a mechanic and fix cars and tractors."
+   },
+   {
+    "text": "When I grow up, I want to be a teacher and teach children to read and write."
+   },
+   {
+    "text": "When I grow up, I want to be a soccer player and score the winning goal."
+   },
+   {
+    "text": "When I grow up, I want to be an astronaut and fly to the moon."
+   },
+   {
+    "text": "When I grow up, I want to be a chef and make food for my family and friends."
+   },
+   {
+    "text": "When I grow up, I can choose whatever I want to be!"
+   },
+   {
+    "text": "What do *you* want to be when you grow up?"
+   }
+  ]
+ },
+ {
+  "id": "bookdash-the-best-thing-ever",
+  "title": "The Best Thing Ever",
+  "description": "Muzi loves to build with his toys. But when he leaves them behind to travel to uGogo’s house, he discovers something very special about the world. And he learns something new about himself.",
+  "credit": "The Best Thing Ever by Melissa Fagan, Lauren Nel, Stefania Origgi. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/the-best-thing-ever/cover.jpg",
+  "pages": [
+   {
+    "text": "Muzi loves to build things.\nHe dreams of building the best thing ever."
+   },
+   {
+    "text": "Once he built a shelter for his toys.\nBut it wasn’t the best thing ever."
+   },
+   {
+    "text": "Yesterday he built a bridge for his animals.\nIt was a good thing. But not the best..."
+   },
+   {
+    "text": "Today Muzi is going to visit uGogo.\nHe is sad. Without his toys, how can he build the best thing ever?"
+   },
+   {
+    "text": "At the bus stop, Muzi is amazed.\nHe sees red things and blue things.\nSmall things and big things.\nNew things and old things."
+   },
+   {
+    "text": "Muzi has a new idea for building the best thing ever."
+   },
+   {
+    "text": "On the road to uGogo’s, Muzi finds many things.\nLong things and short things.\nRound things and square things."
+   },
+   {
+    "text": "By the riverside, Muzi finds more things.\nSoft things and pointy things.\nGreen things and brown things."
+   },
+   {
+    "text": "Look, Muzi! We are here."
+   },
+   {
+    "text": "While uGogo bakes for the hungry travellers...\nMuzi builds."
+   },
+   {
+    "text": "Look Gogo, a new house for you.\nOh, Muzi, laughs Gogo.\nThis is the best thing ever!"
+   },
+   {
+    "text": "Gogo, Gogo! says Muzi. The world is full of toys. Look what I can build."
+   }
+  ]
+ },
+ {
+  "id": "bookdash-grandpas-gold",
+  "title": "Grandpa's Gold",
+  "description": "The children are talking about their grandpas. Giraffe’s grandpa can build a skyscraper. Elephant’s grandpa can cook a massive feast. But whose grandpa will give the children the biggest surprise?",
+  "credit": "Grandpa's Gold by Kerry Saadien-Raad, Elsabé Milandri, Mathilde de Blois. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/grandpas-gold/cover.jpg",
+  "pages": [
+   {
+    "text": "The children were talking about their Grandpas.",
+    "image": "library/bookdash/grandpas-gold/01.jpg"
+   },
+   {
+    "text": "My Grandpa can build a tower to the sky, said Giraffe.\nOnce he built a skyscraper for a king.",
+    "image": "library/bookdash/grandpas-gold/02.jpg"
+   },
+   {
+    "text": "My Grandpa can fish for anything in the sea, said Cheetah.\nOnce he caught a whale and kept it in his bath.",
+    "image": "library/bookdash/grandpas-gold/03.jpg"
+   },
+   {
+    "text": "My Grandpa can climb to the clouds in the sky, said Mountain Goat.\nHe climbed the tallest mountain in the world, in just four hours.",
+    "image": "library/bookdash/grandpas-gold/04.jpg"
+   },
+   {
+    "text": "My Grandpa can cook a feast, said Elephant.\nOnce he cooked a meal for a president’s birthday party. All by himself.",
+    "image": "library/bookdash/grandpas-gold/05.jpg"
+   },
+   {
+    "text": "Well my Grandpa doesn’t build or fish or climb or cook, said Monkey. But he owns gold!\nHe hides it in his mouth. And at night he soaks it in a glass of water.",
+    "image": "library/bookdash/grandpas-gold/06.jpg"
+   },
+   {
+    "text": "No, he doesn’t! Yes, he does! No, he doesn’t!\nWell, come and see if you don’t believe me, said Monkey.",
+    "image": "library/bookdash/grandpas-gold/07.jpg"
+   },
+   {
+    "text": "So the children went to see Monkey’s Grandpa.",
+    "image": "library/bookdash/grandpas-gold/08.jpg"
+   },
+   {
+    "text": "You see? said Monkey. And he can take them out.",
+    "image": "library/bookdash/grandpas-gold/09.jpg"
+   },
+   {
+    "text": "No, he can’t! cried the animals.",
+    "image": "library/bookdash/grandpas-gold/10.jpg"
+   },
+   {
+    "text": "Waaah! said Grandpa Monkey. And there are enough ...",
+    "image": "library/bookdash/grandpas-gold/11.jpg"
+   },
+   {
+    "text": "... for everyone!",
+    "image": "library/bookdash/grandpas-gold/12.jpg"
+   }
+  ]
+ },
+ {
+  "id": "bookdash-hippo-wants-to-dance",
+  "title": "Hippo Wants to Dance",
+  "description": "Hippo wants to dance. Won’t anyone dance with her?",
+  "credit": "Hippo Wants to Dance by Megan Andrews, Sam Beckbessinger, Marisa Steyn. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/hippo-wants-to-dance/cover.jpg",
+  "pages": [
+   {
+    "text": "Hippo wants to dance.\nShe jumps up and down on the dusty ground.\nTHUMP! THUMP!"
+   },
+   {
+    "text": "“You’re getting dirt on me!” says Shongololo, sleeping in the sand.\n“Go dance somewhere else.”"
+   },
+   {
+    "text": "Hippo wants to dance.\nShe rolls into the river and splashes her arms and legs.\nSPLISH! SPLASH!"
+   },
+   {
+    "text": "“You’re making me wet!” says Kingfisher, hunting for her breakfast.\n“Go dance somewhere else.”"
+   },
+   {
+    "text": "Hippo wants to dance.\nShe twirls around and around in a field, kicking her legs up high.\nSWOOSH! SWOOSH!"
+   },
+   {
+    "text": "“Be careful! You nearly kicked me!” says Meerkat, bathing his babies.\n“Go dance somewhere else.”"
+   },
+   {
+    "text": "Hippo wants to dance.\nShe flops into a puddle of mud and slides around on her nice big belly.\nSQUISH! SQUASH!"
+   },
+   {
+    "text": "“Why don’t you stop dancing?” asks Donkey, carrying his buckets.\n“Why can’t you do something useful instead?”"
+   },
+   {
+    "text": "Hippo is sad.\nShe is too sad to dance.\nShe sits on a rock and cries. The tears roll down her cheeks and fall on the ground."
+   },
+   {
+    "text": "HOP! HOP!\nGrasshopper hears Hippo’s tears.\nHe starts dancing around her feet.\nPLOP! PLOP!"
+   },
+   {
+    "text": "Hippo and Grasshopper start to dance, and the other animals come to look ..."
+   }
+  ]
+ },
+ {
+  "id": "bookdash-little-ants-big-plan",
+  "title": "Little Ant's Big Plan",
+  "description": "This is a story about a little ant with a big plan, and how his love for reading saved the day.",
+  "credit": "Little Ant's Big Plan by Candice Dingwall, Steven McKimmie and Telri Stoop. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/little-ants-big-plan/cover.jpg",
+  "pages": [
+   {
+    "text": "Little Ant loved to read. Little Ant was often teased.\n“Ants don’t read. Ants must feed. Ants collect the food they need.”",
+    "image": "library/bookdash/little-ants-big-plan/01.jpg"
+   },
+   {
+    "text": "Little Ant would read all day, he’d read and read the day away.\nThe other ants took what they found to store for winter underground.",
+    "image": "library/bookdash/little-ants-big-plan/02.jpg"
+   },
+   {
+    "text": "His mum and dad got really mad, and Little Ant felt really bad.",
+    "image": "library/bookdash/little-ants-big-plan/03.jpg"
+   },
+   {
+    "text": "In autumn when the leaves fall down, the ants must keep food underground.",
+    "image": "library/bookdash/little-ants-big-plan/04.jpg"
+   },
+   {
+    "text": "The Queen wants food to fill the store, so all the ants must work some more.",
+    "image": "library/bookdash/little-ants-big-plan/05.jpg"
+   },
+   {
+    "text": "Little Ant begins to shout about a place he read about.\n“A restaurant is what we need, a place where people go to feed.\nIt says so in the books I read.”",
+    "image": "library/bookdash/little-ants-big-plan/06.jpg"
+   },
+   {
+    "text": "The ants go marching one by one.\nThey march into the setting sun.",
+    "image": "library/bookdash/little-ants-big-plan/07.jpg"
+   },
+   {
+    "text": "And Little Ant said “Hey, there’s one!”",
+    "image": "library/bookdash/little-ants-big-plan/08.jpg"
+   },
+   {
+    "text": "The ants go marching one by one, carrying a burger, carrying a bun.",
+    "image": "library/bookdash/little-ants-big-plan/09.jpg"
+   },
+   {
+    "text": "When they return the Queen is glad.\nThe stores are full. They cheer like mad.",
+    "image": "library/bookdash/little-ants-big-plan/10.jpg"
+   },
+   {
+    "text": "Ant gets hugs from mum and dad.",
+    "image": "library/bookdash/little-ants-big-plan/11.jpg"
+   },
+   {
+    "text": "His baby sister takes his hand “Now I think I understand.”\n“The way you love to read a book ... Makes me want to take a look.”",
+    "image": "library/bookdash/little-ants-big-plan/12.jpg"
+   }
+  ]
+ },
+ {
+  "id": "bookdash-lara-the-yellow-ladybird",
+  "title": "Lara the Yellow Ladybird",
+  "description": "A yellow bug in a world of red, Lara the Ladybird just wants to fit in.",
+  "credit": "Lara the Yellow Ladybird by Martha Evans, Catherine Holtzhausen, Nadene Kriel. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/lara-the-yellow-ladybird/cover.jpg",
+  "pages": [
+   {
+    "text": "Lara the ladybird was a special bug.\nUnlike all her friends, she had bright yellow wings.",
+    "image": "library/bookdash/lara-the-yellow-ladybird/01.jpg"
+   },
+   {
+    "text": "Everyone loved her yellow wings.\nEach morning, Bibi Butterfly said hello.\nAnd Manto Mantis always waved.",
+    "image": "library/bookdash/lara-the-yellow-ladybird/02.jpg"
+   },
+   {
+    "text": "Even Sesa, the sulky spider, was happy to see her.\nAt school, she played with lots of friends.",
+    "image": "library/bookdash/lara-the-yellow-ladybird/03.jpg"
+   },
+   {
+    "text": "But Lara wanted to be like the other ladybirds.\n“I wish I had red wings like you, Mama,” she cried.",
+    "image": "library/bookdash/lara-the-yellow-ladybird/04.jpg"
+   },
+   {
+    "text": "So one day, to cheer her up, Lara’s mother painted her wings bright red.",
+    "image": "library/bookdash/lara-the-yellow-ladybird/05.jpg"
+   },
+   {
+    "text": "The next morning, nobody greeted Lara on her way to school.",
+    "image": "library/bookdash/lara-the-yellow-ladybird/06.jpg"
+   },
+   {
+    "text": "And when she got there, none of her friends said hello.",
+    "image": "library/bookdash/lara-the-yellow-ladybird/07.jpg"
+   },
+   {
+    "text": "Lara sat all alone. No one noticed her new red wings.\nUntil Miss Miya spotted her and said: “You’ve painted your lovely yellow wings!”",
+    "image": "library/bookdash/lara-the-yellow-ladybird/08.jpg"
+   },
+   {
+    "text": "Lara’s classmates were shocked.\n“Your wings are special!”\n“So unique!”“So rare!”",
+    "image": "library/bookdash/lara-the-yellow-ladybird/09.jpg"
+   },
+   {
+    "text": "“Lara,” Miss Miya said, “your yellow wings are what make you you.\nLike Sipho’s spot ... and Sally’s legs.”",
+    "image": "library/bookdash/lara-the-yellow-ladybird/10.jpg"
+   },
+   {
+    "text": "Back home, Lara took a long bath and scrubbed until her golden wings gleamed.\n“I’ll never paint my wings again!” she thought.\nExcept, maybe once or twice ...",
+    "image": "library/bookdash/lara-the-yellow-ladybird/11.jpg"
+   },
+   {
+    "text": "To try a bit of purple ... or something nice.\nBut not for ever and just for fun.",
+    "image": "library/bookdash/lara-the-yellow-ladybird/12.jpg"
+   }
+  ]
+ },
+ {
+  "id": "bookdash-thatos-birthday-surprise",
+  "title": "Thato's Birthday Surprise",
+  "description": "It is one week until Thato’s Birthday. His mama tells him he will have a big surprise. What will it be?",
+  "credit": "Thato's Birthday Surprise by Jodi Houareau, Brad Cuzen, Corinne Lamoral-Rosmarin. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/thatos-birthday-surprise/cover.jpg",
+  "pages": [
+   {
+    "text": "It is one week until Thato’s birthday.\nThat’s seven whole days!",
+    "image": "library/bookdash/thatos-birthday-surprise/01.jpg"
+   },
+   {
+    "text": "His mama says: “Your birthday present will be a BIG surprise!”\nThato wonders: what will it be?",
+    "image": "library/bookdash/thatos-birthday-surprise/02.jpg"
+   },
+   {
+    "text": "On Monday Thato thinks:\nMaybe I will get giant wings so I can fly high in the sky like a bird...”",
+    "image": "library/bookdash/thatos-birthday-surprise/03.jpg"
+   },
+   {
+    "text": "On Tuesday Thato thinks:\n“Maybe I will have a birthday cake as big as a house!”",
+    "image": "library/bookdash/thatos-birthday-surprise/04.jpg"
+   },
+   {
+    "text": "On Wednesday Thato thinks:\n“Maybe I will get a rocket ship to whizz up to the moon.",
+    "image": "library/bookdash/thatos-birthday-surprise/05.jpg"
+   },
+   {
+    "text": "On Thursday Thato thinks:\n“Maybe I will get fins so I can swim under the water like a fish.”",
+    "image": "library/bookdash/thatos-birthday-surprise/06.jpg"
+   },
+   {
+    "text": "On Friday Thato thinks:\n“Maybe I will get magic soccer boots and score a thousand goals!”",
+    "image": "library/bookdash/thatos-birthday-surprise/07.jpg"
+   },
+   {
+    "text": "On Saturday Thato thinks:\n“Maybe I will get a key that opens a box filled with treasure!”",
+    "image": "library/bookdash/thatos-birthday-surprise/08.jpg"
+   },
+   {
+    "text": "On Sunday it is Thato’s birthday.\nMama smiles and says: “Come and see your surprise!”",
+    "image": "library/bookdash/thatos-birthday-surprise/09.jpg"
+   },
+   {
+    "text": "It is the best present ever.\nThato’s big brother Kudzai has come to visit all the way from the big city!",
+    "image": "library/bookdash/thatos-birthday-surprise/10.jpg"
+   },
+   {
+    "text": "Thato smiles and smiles and his big brother lifts him up in the air and hugs him.\nKudzai asks:“What do you want to do for your birthday, little brother?”",
+    "image": "library/bookdash/thatos-birthday-surprise/11.jpg"
+   },
+   {
+    "text": "And Thato knows exactly what they will do the whole day long.",
+    "image": "library/bookdash/thatos-birthday-surprise/12.jpg"
+   }
+  ]
+ },
+ {
+  "id": "bookdash-sleepy-mr-sloth",
+  "title": "Sleepy Mr Sloth",
+  "description": "He’s quite good at climbing. He knows how to swing. But sleeping’s his favourite, favourite thing!",
+  "credit": "Sleepy Mr Sloth by Graham Paterson, Paul Kennedy, Nick Mulgrew. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/sleepy-mr-sloth/cover.jpg",
+  "pages": [
+   {
+    "text": "One day, Mr Sloth came to visit. He said:\nI’m sleepy! I need a good branch for a bed!",
+    "image": "library/bookdash/sleepy-mr-sloth/01.jpg"
+   },
+   {
+    "text": "I’m quite good at climbing. I know how to swing.\nBut sleeping’s my favourite, favourite thing!",
+    "image": "library/bookdash/sleepy-mr-sloth/02.jpg"
+   },
+   {
+    "text": "This branch looks lovely! I think I’ll sleep here.\nAnd you? Don’t you think that’s a splendid idea?",
+    "image": "library/bookdash/sleepy-mr-sloth/03.jpg"
+   },
+   {
+    "text": "Oh no, Mr Sloth! A giraffe’s eating there!\nHe might think you’re lunch and start nibbling your hair!",
+    "image": "library/bookdash/sleepy-mr-sloth/04.jpg"
+   },
+   {
+    "text": "This branch looks lovely! I think I’ll sleep here.\nAnd you? Don’t you think that’s a splendid idea?",
+    "image": "library/bookdash/sleepy-mr-sloth/05.jpg"
+   },
+   {
+    "text": "Oh no, Mr Sloth! There’s a beehive right there!\nYou’ll never get sleep with those bees everywhere!",
+    "image": "library/bookdash/sleepy-mr-sloth/06.jpg"
+   },
+   {
+    "text": "This branch looks lovely! I think I’ll sleep here.\nAnd you? Don’t you think that’s a splendid idea?",
+    "image": "library/bookdash/sleepy-mr-sloth/07.jpg"
+   },
+   {
+    "text": "Oh no, Mr Sloth, that’s a snake over there!\nNot a branch! Poor old snake. You gave him quite a scare.",
+    "image": "library/bookdash/sleepy-mr-sloth/08.jpg"
+   },
+   {
+    "text": "This branch looks lovely! I think I’ll sleep here.\nAnd you? Don’t you think that’s a splendid idea?",
+    "image": "library/bookdash/sleepy-mr-sloth/09.jpg"
+   },
+   {
+    "text": "Oh no, Mr Sloth! There’s a bird squawking there!\nYou’ll never get sleep with that noise in the air!",
+    "image": "library/bookdash/sleepy-mr-sloth/10.jpg"
+   },
+   {
+    "text": "Try climb one more branch, Mr Sloth! they all said.\nAnd that branch was just the right one for his bed.",
+    "image": "library/bookdash/sleepy-mr-sloth/11.jpg"
+   },
+   {
+    "text": "The bird and the snake, the giraffe and each bee\nwere happy to have Mr Sloth in their tree.",
+    "image": "library/bookdash/sleepy-mr-sloth/12.jpg"
+   }
+  ]
+ },
+ {
+  "id": "bookdash-walking-together",
+  "title": "Walking Together",
+  "description": "A walk to the clinic doesn’t have to be dull, when there are so many wonderful things to see on the way.",
+  "credit": "Walking Together by Jade Mathieson, Louwrisa Blaauw, Bianca de Jong. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/walking-together/cover.jpg",
+  "pages": [
+   {
+    "text": "When we go walking and the road is long, we’ll walk together singing a song.",
+    "image": "library/bookdash/walking-together/01.jpg"
+   },
+   {
+    "text": "I am with you and you are with me.\nA journey is fun with our family.",
+    "image": "library/bookdash/walking-together/02.jpg"
+   },
+   {
+    "text": "I’ll keep you cosy like a mother hen.\nShe keeps her chicks warm under her wing.",
+    "image": "library/bookdash/walking-together/03.jpg"
+   },
+   {
+    "text": "If the rain starts to fall down from the sky, like that good hat I’ll keep your face dry.",
+    "image": "library/bookdash/walking-together/04.jpg"
+   },
+   {
+    "text": "If storm clouds get angry and grumble and moan, be brave, why cry?\nYou’re not alone.",
+    "image": "library/bookdash/walking-together/05.jpg"
+   },
+   {
+    "text": "We’re walking together so we never get bored.\nLook up! Look around!\nSee where we’ve explored!",
+    "image": "library/bookdash/walking-together/06.jpg"
+   },
+   {
+    "text": "If you see something that’s funny to see, I don’t want to miss it.\nPlease share it with me!",
+    "image": "library/bookdash/walking-together/07.jpg"
+   },
+   {
+    "text": "If your feet start to hurt from the distance we’ve passed, don’t worry, we’ve made it!\nHere’s the clinic at last.",
+    "image": "library/bookdash/walking-together/08.jpg"
+   },
+   {
+    "text": "We all need to check our throat, lungs and ears.\nGet strong as you grow, it’s no reason for tears.",
+    "image": "library/bookdash/walking-together/09.jpg"
+   },
+   {
+    "text": "Do you think it’s scary?\nHere, hold my hand.\nShe’ll check your blood pressure with this clever armband.",
+    "image": "library/bookdash/walking-together/10.jpg"
+   },
+   {
+    "text": "They give us our medicine, tell us what we should know, to keep us all healthy.\nNow back home we go.",
+    "image": "library/bookdash/walking-together/11.jpg"
+   },
+   {
+    "text": "It’s okay to be tired, there’s so much we’ve seen.\nNow it’s your bedtime.\nSleep well and sweet dreams.",
+    "image": "library/bookdash/walking-together/12.jpg"
+   }
+  ]
+ },
+ {
+  "id": "bookdash-bathtub-safari",
+  "title": "Bathtub Safari",
+  "description": "Jack’s bath time takes a wild turn as things in his bathtub start to change, and a group of animals becomes part of his adventurous bathtub safari!",
+  "credit": "Bathtub Safari by Tracy Lynn Chemaly, Robert McEwan, Sarah-Jane Williams. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/bathtub-safari/cover.jpg",
+  "pages": [
+   {
+    "text": "Bathtime is Jack’s favourite part of the day.\n‘I’ll be back in a few moments,’ says his mom. ‘Make sure to clean behind your ears.’",
+    "image": "library/bookdash/bathtub-safari/01.jpg"
+   },
+   {
+    "text": "There’s a SWOOSH. And a swish of a tail.\nAnd then...",
+    "image": "library/bookdash/bathtub-safari/02.jpg"
+   },
+   {
+    "text": "Jack’s bathtub safari begins!",
+    "image": "library/bookdash/bathtub-safari/03.jpg"
+   },
+   {
+    "text": "Look at what’s coming!\nThere’s a twist and a turn..\nSomething’s growing...\nIt’s a...",
+    "image": "library/bookdash/bathtub-safari/04.jpg"
+   },
+   {
+    "text": "TOOOT!",
+    "image": "library/bookdash/bathtub-safari/05.jpg"
+   },
+   {
+    "text": "There’s a RUMBLE!\nUP\nUP\nIt’s going up\nand...",
+    "image": "library/bookdash/bathtub-safari/06.jpg"
+   },
+   {
+    "text": "SPLASH!",
+    "image": "library/bookdash/bathtub-safari/07.jpg"
+   },
+   {
+    "text": "There’s a SPLOSH. Something bubbles.\nIt’s time to...",
+    "image": "library/bookdash/bathtub-safari/08.jpg"
+   },
+   {
+    "text": "AAAAAAH\nBut something’s lurking in the background...",
+    "image": "library/bookdash/bathtub-safari/09.jpg"
+   },
+   {
+    "text": "ROAR",
+    "image": "library/bookdash/bathtub-safari/10.jpg"
+   },
+   {
+    "text": "‘Time to get out. I hope you’re clean and ready for bed.’",
+    "image": "library/bookdash/bathtub-safari/11.jpg"
+   },
+   {
+    "text": "",
+    "image": "library/bookdash/bathtub-safari/12.jpg"
+   }
+  ]
+ },
+ {
+  "id": "bookdash-how-about-you",
+  "title": "How About You?",
+  "description": "You don’t need to be alike to be friends. When two very different children meet an unusual creature, it’s a chance to ask, How About You?",
+  "credit": "How About You? by Renate van Rensburg, Margot Bertelsmann, Ronèll Botes. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/how-about-you/cover.jpg",
+  "pages": [
+   {
+    "text": "Who are you?",
+    "image": "library/bookdash/how-about-you/01.jpg"
+   },
+   {
+    "text": "Is that goo?\nEeuw!\nI want some too.",
+    "image": "library/bookdash/how-about-you/02.jpg"
+   },
+   {
+    "text": "We are two.\nHow old are you?\nSix hundred and thirty two?",
+    "image": "library/bookdash/how-about-you/03.jpg"
+   },
+   {
+    "text": "I like blue. Do you too?\nI choose two shoes.\nWhich do you choose?",
+    "image": "library/bookdash/how-about-you/04.jpg"
+   },
+   {
+    "text": "Horseshoes!?",
+    "image": "library/bookdash/how-about-you/05.jpg"
+   },
+   {
+    "text": "I make toys with boys.",
+    "image": "library/bookdash/how-about-you/06.jpg"
+   },
+   {
+    "text": "We make lots of noise.\nWhaaa!\neurgghhh...aargh!",
+    "image": "library/bookdash/how-about-you/07.jpg"
+   },
+   {
+    "text": "I take a nap on Gogo’s back.",
+    "image": "library/bookdash/how-about-you/08.jpg"
+   },
+   {
+    "text": "I don’t nap!",
+    "image": "library/bookdash/how-about-you/09.jpg"
+   },
+   {
+    "text": "I stay upright all through the night.",
+    "image": "library/bookdash/how-about-you/10.jpg"
+   },
+   {
+    "text": "The ball goes THWOCK! Buddy, you ROCK!",
+    "image": "library/bookdash/how-about-you/11.jpg"
+   },
+   {
+    "text": "That’s what we do. How about you?",
+    "image": "library/bookdash/how-about-you/12.jpg"
+   }
+  ]
+ },
+ {
+  "id": "bookdash-why-is-nita-upside-down",
+  "title": "Why is Nita upside down?",
+  "description": "Nita’s hanging upside down. Can she turn the right way round?",
+  "credit": "Why is Nita upside down? by Emma Hearne, Roxana Bouwer, Sarah Bouwer. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/why-is-nita-upside-down/cover.jpg",
+  "pages": [
+   {
+    "text": "Nita’s hanging upside down, her long hair tickling at the ground.\nThe trees, the grass, the everything is all the wrong way round.",
+    "image": "library/bookdash/why-is-nita-upside-down/01.jpg"
+   },
+   {
+    "text": "Her feet, they poke into the sky. Little Navi’s walking by.\nHe says ‘I’ve seen you here before. You’re upside down again! What for?’",
+    "image": "library/bookdash/why-is-nita-upside-down/02.jpg"
+   },
+   {
+    "text": "His feet swim lightly in the air. She tries to hide behind her hair.\n‘It’s h-h-h-hard to t-t-talk’, she says to him. ‘I’m not the same. I don’t fit in.",
+    "image": "library/bookdash/why-is-nita-upside-down/03.jpg"
+   },
+   {
+    "text": "Navi takes her by the hand. He wants to help her understand.\nThey climb to Navi’s look-out spot. From up here they can see a lot.\nThey perch and have a quiet stare at children playing here and there.",
+    "image": "library/bookdash/why-is-nita-upside-down/04.jpg"
+   },
+   {
+    "text": "",
+    "image": "library/bookdash/why-is-nita-upside-down/05.jpg"
+   },
+   {
+    "text": "Those kids are not the same at all.\nAbe’s round.\nChi's freckled.",
+    "image": "library/bookdash/why-is-nita-upside-down/06.jpg"
+   },
+   {
+    "text": "Lala’s extra tall.",
+    "image": "library/bookdash/why-is-nita-upside-down/07.jpg"
+   },
+   {
+    "text": "Bambam’s wild and must be free, while Lulu's reading quietly.",
+    "image": "library/bookdash/why-is-nita-upside-down/08.jpg"
+   },
+   {
+    "text": "Look at Freya's crazy hair.",
+    "image": "library/bookdash/why-is-nita-upside-down/09.jpg"
+   },
+   {
+    "text": "And Sid wears glasses everywhere.",
+    "image": "library/bookdash/why-is-nita-upside-down/10.jpg"
+   },
+   {
+    "text": "And me, I am just skin and bone.\nAnd you are you. You’re not alone.\nEach human’s sort of strange, you see. That makes you just the same, like me.\nThis world is really one big game. To play, we can’t all be the same.",
+    "image": "library/bookdash/why-is-nita-upside-down/11.jpg"
+   },
+   {
+    "text": "Nita feels the right way round, thanks to the new friend she's found.\nUpside down was never fun.\nNow she plays with everyone.",
+    "image": "library/bookdash/why-is-nita-upside-down/12.jpg"
+   }
+  ]
+ },
+ {
+  "id": "bookdash-karabos-question",
+  "title": "Karabo's Question",
+  "description": "Little Karabo watches all the grown-ups in her family, and wonders, ‘What do I do? What do I know?’",
+  "credit": "Karabo's Question by Leisl Jobson, Natalie Propa, Marike Beyleveld. Published by Book Dash (bookdash.org) under CC BY 4.0. Picture symbols added.",
+  "url": "https://bookdash.org",
+  "cover": "library/bookdash/karabos-question/cover.jpg",
+  "pages": [
+   {
+    "text": "My sister Kifue chases roosters that crow.\nWhat do I do?\nWhat do I know?",
+    "image": "library/bookdash/karabos-question/01.jpg"
+   },
+   {
+    "text": "My brother Katleho has a ball to throw.\nWhat do I do?\nWhat do I know?",
+    "image": "library/bookdash/karabos-question/02.jpg"
+   },
+   {
+    "text": "My cousin Kutloano plants seeds in a row.\nWhat do I do?\nWhat do I know?",
+    "image": "library/bookdash/karabos-question/03.jpg"
+   },
+   {
+    "text": "My cousin Kamohelo leans on her hoe.\nWhat do I do?\nWhat do I know?",
+    "image": "library/bookdash/karabos-question/04.jpg"
+   },
+   {
+    "text": "My aunt Keromang has a dress to sew.\nWhat do I do?\nWhat do I know?",
+    "image": "library/bookdash/karabos-question/05.jpg"
+   },
+   {
+    "text": "My uncle Khotso herds the cattle that low.\nWhat do I do?\nWhat do I know?",
+    "image": "library/bookdash/karabos-question/06.jpg"
+   },
+   {
+    "text": "Mama dries wheat when the wind does not blow.\nWhat do I do?\nWhat do I know?",
+    "image": "library/bookdash/karabos-question/07.jpg"
+   },
+   {
+    "text": "Papa rides a horse over mountains in snow.\nWhat do I do?\nWhat do I know?",
+    "image": "library/bookdash/karabos-question/08.jpg"
+   },
+   {
+    "text": "Grandpa’s slow donkey walks to and fro.\nWhat do I do?\nWhat do I know?",
+    "image": "library/bookdash/karabos-question/09.jpg"
+   },
+   {
+    "text": "Grandma sings songs till the fire burns low.\nWhat do I do?\nWhat do I know?",
+    "image": "library/bookdash/karabos-question/10.jpg"
+   },
+   {
+    "text": "You know how to say yes.\nYou know how to say no.\nThat’s what you do!\nThat’s what you know!",
+    "image": "library/bookdash/karabos-question/11.jpg"
+   },
+   {
+    "text": "Everyone laughs when you put on a show.\nYour work is to play.\nYour work is to grow.",
+    "image": "library/bookdash/karabos-question/12.jpg"
+   }
+  ]
+ }
+]
